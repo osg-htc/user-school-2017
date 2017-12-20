@@ -16,3 +16,9 @@ extra_javascript: []
 
 pages:
   - User School 2017:           index.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
