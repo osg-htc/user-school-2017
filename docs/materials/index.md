@@ -4,7 +4,7 @@
 
 ### Monday Morning: Introduction to HTC
 
--   Lecture: Introduction to HTC ([PDF](%ATTACHURL%/2017OSGSS_Monday1_HTC.pdf))
+-   Lecture: Introduction to HTC ([PDF](day1/files/osgus17-day1-part1-intro-to-htc.pdf))
 -   [Exercise 1.1: Log in to the local submit machine and look around](day1/part1-ex1-login.md)
 -   [Exercise 1.2: Experiment with basic HTCondor commands](day1/part1-ex2-commands.md)
 -   [Exercise 1.3: Run jobs!](day1/part1-ex3-jobs.md)
