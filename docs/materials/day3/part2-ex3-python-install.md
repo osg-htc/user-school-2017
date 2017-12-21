@@ -43,7 +43,7 @@ python3 fib.py 5</pre>\\ or\\ <pre class="file"> python/bin/python3 fib.py 5</pr
 Submit file
 -----------
 
-The submit file for this exercise can be very similar to the [last one from Exercise 1.7](/user-school/2017/materials/day3/part2-ex2-python-built.md).
+The submit file for this exercise can be very similar to the [last one from Exercise 1.7](part2-ex2-python-built.md).
 
 1.  Make a copy of the submit file from the last exercise. What lines need to change? Make changes as appropriate.
 2.  You need to change the transferred tarball (the Python source, instead of our `prebuilt_python.tar.gz`) and the job's executable. Once you've made these changes, submit the job using `condor_submit`.

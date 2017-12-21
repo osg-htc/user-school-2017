@@ -64,7 +64,7 @@ Now, let’s try to use this Python script and remember some basic HTCondor idea
 2.  Create and change into a new folder for this exercise, for example `tuesday-1.1`
 3.  Save the Python script above as a file named `location.py`
 4.  As always, ensure that your script has the proper permissions (hint: try running it from the command line)
-5.  Create a submit file that generates ten jobs that run `location.py` and uses the `$(Process)` macro to write different `output` and `error` files. Try to do this step without looking at materials from yesterday. But if you are stuck, see [yesterday’s exercise 2.4](/user-school/2017/materials/day1/part2-ex4-queue-n.md).
+5.  Create a submit file that generates ten jobs that run `location.py` and uses the `$(Process)` macro to write different `output` and `error` files. Try to do this step without looking at materials from yesterday. But if you are stuck, see [yesterday’s exercise 2.4](../day1/part2-ex4-queue-n.md).
 6.  Submit your jobs and wait for the results
 
 ### Collating your results
@@ -89,5 +89,5 @@ To visualize the locations of the machines that your jobs ran on, you will be us
 Next exercise
 -------------
 
-Once completed, move onto the next exercise: [Logging in to the OSG Submit Machine](/user-school/2017/materials/day2/part1-ex2-login-scp.md)
+Once completed, move onto the next exercise: [Logging in to the OSG Submit Machine](part1-ex2-login-scp.md)
 

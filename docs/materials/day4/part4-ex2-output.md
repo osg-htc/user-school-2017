@@ -58,7 +58,7 @@ because we want to run a smaller test before submitting a job with the largest p
 Next, create a submit file for this job, based on other submit files from the school. Some important considerations:
 
 1.  We're writing our file to the job's working directory, so make sure to request several GB of disk space.
-2.  Add a line to the file that ensures your job will land on computers that have access to Gluster (see the file from the [last exercise](/user-school/2017/materials/day4/part4-ex1-input.md)).
+2.  Add a line to the file that ensures your job will land on computers that have access to Gluster (see the file from the [last exercise](part4-ex1-input.md)).
 3.  The `executable` will be the script you wrote above.
 
 Once you have a submit file that does all these things, submit the test job.

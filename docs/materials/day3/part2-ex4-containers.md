@@ -15,7 +15,7 @@ One caveat for using containers: not all systems will support them. HTCondor has
 Submit File Changes
 -------------------
 
-1.  Make a copy of your submit file from the [previous exercise](/user-school/2017/materials/day3/part2-ex3-python-install.md).
+1.  Make a copy of your submit file from the [previous exercise](part2-ex3-python-install.md).
 2.  Add the following three lines to the submit file or modify existing lines to match the lines below: \\
 
 ``` file

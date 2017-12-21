@@ -3,7 +3,7 @@
 Wednesday Exercise 1.6: Matlab
 ==============================
 
-The goal of this exercise is to compile Matlab code and run it. This exercise will draw on the idea of writing a wrapper script to install and run code, first introduced in [Exercise 1.3](/user-school/2017/materials/day3/part1-ex3-wrapper.md) and should take 25-30 minutes.
+The goal of this exercise is to compile Matlab code and run it. This exercise will draw on the idea of writing a wrapper script to install and run code, first introduced in [Exercise 1.3](part1-ex3-wrapper.md) and should take 25-30 minutes.
 
 Background
 ----------
@@ -102,7 +102,7 @@ The newly compiled binary will require the 2015b Matlab runtime to run. You can 
 Wrapper Script
 --------------
 
-Like the [OpenBUGS](/user-school/2017/materials/day3/part1-ex4-prepackaged.md) example from earlier this morning, we will need a wrapper script to open the Matlab runtime and then run our compiled Matlab code. Our wrapper script will need to accomplish the following steps:
+Like the [OpenBUGS](part1-ex4-prepackaged.md) example from earlier this morning, we will need a wrapper script to open the Matlab runtime and then run our compiled Matlab code. Our wrapper script will need to accomplish the following steps:
 
 -   Unpack the transferred runtime
 -   Set the environment variables
@@ -127,7 +127,7 @@ tar -xzf r2015b.tar.gz
 Submitting the Job
 ------------------
 
-1.  Copy an existing submit file into your current directory. The submit file we used for the [Open Bugs](/user-school/2017/materials/day3/part1-ex4-prepackaged.md) example would be a good candidate, as that example also used a wrapper script. 2. Modify your submit file for this job. 3. Check your changes against the list below.
+1.  Copy an existing submit file into your current directory. The submit file we used for the [Open Bugs](part1-ex4-prepackaged.md) example would be a good candidate, as that example also used a wrapper script. 2. Modify your submit file for this job. 3. Check your changes against the list below.
     -   The `executable` for this job is going to be our wrapper script `run_matrix.sh`. \\
 
 ``` file

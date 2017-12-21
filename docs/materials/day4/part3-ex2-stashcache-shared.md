@@ -4,7 +4,7 @@ Thursday Exercise 3.2: Using StashCache for Large Shared Data
 
 This exercise will use a [BLAST](http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastHome) workflow to demonstrate the functionality of StashCache for transferring input files to jobs on OSG.
 
-Because our individual blast jobs from [Exercise 3.1](/user-school/2017/materials/day4/part3-ex1-blast-proxy.md) would take a bit longer with a larger database (too long for an workable exercise), we'll imagine for this exercise that our `pdbaa_files.tar.gz` file is too large for a web proxy (larger than ~1 GB). For this exercise, we will use the input from Exercise 3.1, but instead of using the web proxy for the `pdbaa` database, we will place it in StashCache via the OSG Connect server.
+Because our individual blast jobs from [Exercise 3.1](part3-ex1-blast-proxy.md) would take a bit longer with a larger database (too long for an workable exercise), we'll imagine for this exercise that our `pdbaa_files.tar.gz` file is too large for a web proxy (larger than ~1 GB). For this exercise, we will use the input from Exercise 3.1, but instead of using the web proxy for the `pdbaa` database, we will place it in StashCache via the OSG Connect server.
 
 StashCache is a distributed set of caches spread across the U.S. They are connected with high bandwidth connections to each other, and to the data origin servers, where your data is originally placed.
 
@@ -20,7 +20,7 @@ Setup
 -----
 
 -   Make sure you're logged in to `user-training.osgconnect.net`
--   Transfer the following files from [Exercise 3.1](/user-school/2017/materials/day4/part3-ex1-blast-proxy.md) to a new directory called `thur-data-3.2`: `blast_wrapper.sh`, `mouse_rna.fa.1`, `mouse_rna.fa.2`, `mouse_rna.fa.3`, and the most recent submit file.
+-   Transfer the following files from [Exercise 3.1](part3-ex1-blast-proxy.md) to a new directory called `thur-data-3.2`: `blast_wrapper.sh`, `mouse_rna.fa.1`, `mouse_rna.fa.2`, `mouse_rna.fa.3`, and the most recent submit file.
 
 Place the Database in StashCache
 --------------------------------

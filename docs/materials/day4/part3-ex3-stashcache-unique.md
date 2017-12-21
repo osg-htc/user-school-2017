@@ -1,7 +1,7 @@
 Thursday Exercise 3.3: Using Stash for unique large input
 =========================================================
 
-In this exercise, we will run a multimedia program that converts and manipulates video files. In particular, we want to convert large \\ `.mov` files to smaller (10-100s of MB) `mp4` files. \\ Just like the Blast database in the [previous exercise](/user-school/2017/materials/day4/part3-ex2-stashcache-shared.md), these video files are too large to send to jobs using HTCondor's default \\ file transfer mechanism, so we'll be using the Stash tool to send our data to jobs. This exercise should take 25-30 minutes.
+In this exercise, we will run a multimedia program that converts and manipulates video files. In particular, we want to convert large \\ `.mov` files to smaller (10-100s of MB) `mp4` files. \\ Just like the Blast database in the [previous exercise](part3-ex2-stashcache-shared.md), these video files are too large to send to jobs using HTCondor's default \\ file transfer mechanism, so we'll be using the Stash tool to send our data to jobs. This exercise should take 25-30 minutes.
 
 Data
 ----
@@ -65,7 +65,7 @@ Look for the `x86_64` build. \\
 Script
 ------
 
-We want to write a script that uses `ffmpeg` to convert a `.mov` file to a smaller format. Our script will need to *copy* \\ that movie file from Stash to the job's current working directory (as in the [previous exercise](/user-school/2017/materials/day4/part3-ex2-stashcache-shared.md), *run* the appropriate `ffmpeg` command, \\ and then *remove* the original movie file so that it doesn't get transferred back to the submit server. This last step is \\ particularly important, as otherwise you will have large files transferring into the submit server and filling up your home directory space.
+We want to write a script that uses `ffmpeg` to convert a `.mov` file to a smaller format. Our script will need to *copy* \\ that movie file from Stash to the job's current working directory (as in the [previous exercise](part3-ex2-stashcache-shared.md), *run* the appropriate `ffmpeg` command, \\ and then *remove* the original movie file so that it doesn't get transferred back to the submit server. This last step is \\ particularly important, as otherwise you will have large files transferring into the submit server and filling up your home directory space.
 
 1.  Create a file called `run_ffmpeg.sh`, that does the steps described above. Use the name of the smallest `.mov` file \\
 
@@ -158,7 +158,7 @@ the input file name, the "output" file name will be the input file name with the
 arguments = $(mov) $(mov).mp4
 ```
 
-2. To set these arguments, we will use the `queue .. matching` syntax that we learned on [Monday](/user-school/2017/materials/day1/part2-ex6-queue-from.md). To \\ do so, we need to create a list of our input files. 3. In our submit file, we can then change our queue statement to: \\
+2. To set these arguments, we will use the `queue .. matching` syntax that we learned on [Monday](../day1/part2-ex6-queue-from.md). To \\ do so, we need to create a list of our input files. 3. In our submit file, we can then change our queue statement to: \\
 
 ``` file
 queue mov from movie_list.txt

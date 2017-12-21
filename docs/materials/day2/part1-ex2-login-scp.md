@@ -122,5 +122,5 @@ WinSCP is an `scp` client for Windows operating systems.
 Next exercise
 -------------
 
-Once completed, move onto the next exercise: [Running jobs in the OSG](/user-school/2017/materials/day2/part1-ex3-submit-osg.md)
+Once completed, move onto the next exercise: [Running jobs in the OSG](part1-ex3-submit-osg.md)
 

@@ -3,8 +3,8 @@ OSG User School 2017 Logistics
 
 The following pages describe some of the important information about your visit to Madison for the OSG User School. Please read them carefully. There will be other pages with local details soon.
 
--   [Non-Resident Aliens and documentation requirements](/user-school/2017/logistics/personal-info.md)
--   [Travel to and from Madison](/user-school/2017/logistics/travel.md)
+-   [Non-Resident Aliens and documentation requirements](personal-info.md)
+-   [Travel to and from Madison](travel.md)
 
 As always: If you have questions, email us at <user-school@opensciencegrid.org>. Use that email address for all emails about the organization of the OSG School.
 

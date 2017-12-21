@@ -8,7 +8,7 @@ In this exercise, you will create an installation of a Bayesian inference packag
 Background
 ----------
 
-Some software cannot be compiled into a single executable, whether you compile it yourself (as in [Exercise 1.1](/user-school/2017/materials/day3/part1-ex1-compiling.md)) or download it already compiled (as in [Exercise 1.2](/user-school/2017/materials/day3/part1-ex2-precompiled.md)). In this case, it is necessary to download or create a portable copy of the software and then use a wrapper script (as in the [previous exercise](/user-school/2017/materials/day3/part1-ex3-wrapper.md)) to "install" the software on a per job basis. This script can either install the software from the source code, or (as in this exercise), unpack a portable software package that you've pre-built yourself.
+Some software cannot be compiled into a single executable, whether you compile it yourself (as in [Exercise 1.1](part1-ex1-compiling.md)) or download it already compiled (as in [Exercise 1.2](part1-ex2-precompiled.md)). In this case, it is necessary to download or create a portable copy of the software and then use a wrapper script (as in the [previous exercise](part1-ex3-wrapper.md)) to "install" the software on a per job basis. This script can either install the software from the source code, or (as in this exercise), unpack a portable software package that you've pre-built yourself.
 
 Our Software Example
 --------------------
@@ -135,7 +135,7 @@ Note that we now have two tarballs in our directory -- the *source* tarball (`Op
 Wrapper Script
 --------------
 
-Now that we've created our portable installation, we need to write a script that opens and uses the installation, similar to the process we used in the \\ [previous exercise](/user-school/2017/materials/day3/part1-ex3-wrapper.md). These steps should be performed back on the submit server (`learn.chtc.wisc.edu`).
+Now that we've created our portable installation, we need to write a script that opens and uses the installation, similar to the process we used in the \\ [previous exercise](part1-ex3-wrapper.md). These steps should be performed back on the submit server (`learn.chtc.wisc.edu`).
 
 1.  Create a script called `run_openbugs.sh`. The script will first need to untar our installation, so the script should start out like this: \\ <pre class="file">
 
@@ -179,7 +179,7 @@ We're almost ready! We need two more pieces to run a OpenBUGS job.
 %UCL_PROMPT_SHORT% <strong>tar -xzf openbugs_files.tar.gz</strong>
 ```
 
-1.  Our last step is to create a submit file for our Open BUGS job. Think about which lines this submit file will need. Make a copy of a previous submit file (you could use the blast submit file from the [previous exercise](/user-school/2017/materials/day3/part1-ex3-wrapper.md) as a base) and modify it as you think necessary.
+1.  Our last step is to create a submit file for our Open BUGS job. Think about which lines this submit file will need. Make a copy of a previous submit file (you could use the blast submit file from the [previous exercise](part1-ex3-wrapper.md) as a base) and modify it as you think necessary.
 2.  The two most important lines to modify for this job are listed below; check them against your own submit file: \\
 
 ``` file
