@@ -1,14 +1,14 @@
 Thursday Exercise 4.1: Large Input Data
 =======================================
 
-In this exercise, we will do a similar version of the [previous exercise](/user-school/2017/materials/day4/part3-ex3-stashcache-unique.md). This exercise should take 10-15 minutes.
+In this exercise, we will do a similar version of the [previous exercise](part3-ex3-stashcache-unique.md). This exercise should take 10-15 minutes.
 
 Background
 ----------
 
-In the previous exercises, we used two "web-based" tools to stage and deliver our files to jobs: [the squid web proxy](/user-school/2017/materials/day4/part3-ex1-blast-proxy.md) \\ and [Stash](/user-school/2017/materials/day4/part3-ex2-stashcache-shared.md). Another alternative for handling large files (both input and output), especially if they are unique to each job, is a local \\ shared filesystem. This is a filesystem that all (or most) of the execute servers can access, so data stored there can be copied \\ to the job from that system instead of as a transfer or download.
+In the previous exercises, we used two "web-based" tools to stage and deliver our files to jobs: [the squid web proxy](part3-ex1-blast-proxy.md) \\ and [Stash](part3-ex2-stashcache-shared.md). Another alternative for handling large files (both input and output), especially if they are unique to each job, is a local \\ shared filesystem. This is a filesystem that all (or most) of the execute servers can access, so data stored there can be copied \\ to the job from that system instead of as a transfer or download.
 
-For this example, we'll be submitting the same jobs as the [previous exercise](/user-school/2017/materials/day4/part3-ex3-stashcache-unique.md), but we will stage our \\ data in a shared filesystem local to CHTC. The name of our shared filesystem is Gluster and user directories are found as sub-directories \\ of the path `/mnt/gluster`. This is just one example of what it can look like to use a shared filesystem. If you are running \\ jobs at your own institution, the shared filesystem and how to access it may be different.
+For this example, we'll be submitting the same jobs as the [previous exercise](part3-ex3-stashcache-unique.md), but we will stage our \\ data in a shared filesystem local to CHTC. The name of our shared filesystem is Gluster and user directories are found as sub-directories \\ of the path `/mnt/gluster`. This is just one example of what it can look like to use a shared filesystem. If you are running \\ jobs at your own institution, the shared filesystem and how to access it may be different.
 
 Accessing the Filesystem
 ------------------------
@@ -32,7 +32,7 @@ While the files are copying, feel free to open a second connection to `learn.cht
 
 ### Software, Executable, Submit File
 
-Because these jobs will be similar to the previous exercise, we can copy the software (`ffmpeg`), our executable (`run_ffmpeg.sh`) \\ and submit file from `user-training.osgconnect.net` to `learn.chtc.wisc.edu`, or, feel free to replicate these by following the instructions in the [previous exercise](/user-school/2017/materials/day4/part3-ex3-stashcache-unique.md). These files should go into a sub-directory of your **home** directory, **not your Gluster directory**.
+Because these jobs will be similar to the previous exercise, we can copy the software (`ffmpeg`), our executable (`run_ffmpeg.sh`) \\ and submit file from `user-training.osgconnect.net` to `learn.chtc.wisc.edu`, or, feel free to replicate these by following the instructions in the [previous exercise](part3-ex3-stashcache-unique.md). These files should go into a sub-directory of your **home** directory, **not your Gluster directory**.
 
 Ch-ch-ch-changes
 ----------------

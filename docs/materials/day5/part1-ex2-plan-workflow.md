@@ -3,7 +3,7 @@
 Friday Exercise 1.2: Plan Joe's Workflow
 ========================================
 
-This exercise outlines our goal (creating a production workflow) and the steps needed to achieve it. Before starting this section, make sure to first read [Exercise 1.1](/user-school/2017/materials/day5/part1-ex1-science-intro.md), which has important background information about Joe's intended work and how he has submitted jobs so far.
+This exercise outlines our goal (creating a production workflow) and the steps needed to achieve it. Before starting this section, make sure to first read [Exercise 1.1](part1-ex1-science-intro.md), which has important background information about Joe's intended work and how he has submitted jobs so far.
 
 Your mission
 ------------
@@ -20,7 +20,7 @@ Your goal is to plan out Joe’s workflow based upon small-scale test jobs and, 
 
 -   **Create a single DAG file, with *permutation* and *QTL mapping* jobs for each of the three traits,** including PRE and/or POST scripts for the `tar` scripts that need to be run.
 
-We'll be working on the first two optimization steps during this session, and the second optimization step and DAG creation after the break, in [Exercise 1.3](/user-school/2017/materials/day5/part2-ex1-execute-workflow.md).
+We'll be working on the first two optimization steps during this session, and the second optimization step and DAG creation after the break, in [Exercise 1.3](part2-ex1-execute-workflow.md).
 
 ### \*NOTE: In what follows, the only files you will need to modify are the submit files (and as specifically instructed). You will not need to modify any of the input files, output files, or scripts/programs. It is advisable that you split up some of the work within your pair or group in order to be time-efficient.
 
@@ -61,5 +61,5 @@ In order to optimize Joe's overall workflow, we can optimize the following value
 
 **Memory and disk for both steps:** Make sure to examine the log files of your *permutation* and *QTL* test jobs, so that you can extrapolate how much memory and disk should be requested in the submit files for the full-scale DAG.
 
-### **When you're done with \#3, move on to [Exercise 1.3](/user-school/2017/materials/day5/part2-ex1-execute-workflow.md)**
+### **When you're done with \#3, move on to [Exercise 1.3](part2-ex1-execute-workflow.md)**
 

@@ -30,7 +30,7 @@ After asking Joe many questions, you realize the following things:
 View Joe's files
 ----------------
 
-**(but don't do anything with them until the next [exercise](/user-school/2017/materials/day5/part1-ex2-plan-workflow.md), where you'll plan necessary developments of a workflow for Joe.)**
+**(but don't do anything with them until the next [exercise](part1-ex2-plan-workflow.md), where you'll plan necessary developments of a workflow for Joe.)**
 
 Log in to `learn.chtc.wisc.edu` and move to a desired location in your home directory. Enter the following commands to download and decompress/untar Joe’s job ingredients:
 

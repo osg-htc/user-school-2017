@@ -13,7 +13,7 @@ The materials for this exercise are located on our web server.
 3.  Extract the tarball using the commands you learned earlier today
 4.  Change into the directory extracted from the tarball and explore its contents
 
-`anagram.dag` is the main DAG that you will be submitting and although it may look like a simple, linear DAG, it's actually more like the DAG from Monday's [exercise 4.2](/user-school/2017/materials/day1/part3-ex3-simple-dag.md) because of the [SUBDAG](http://research.cs.wisc.edu/htcondor/manual/v8.4/2_10DAGMan_Applications.html#SECTION003108900000000000000) within it! There is only one `.dag` file in the extracted folder, so where does the SUBDAG come from?
+`anagram.dag` is the main DAG that you will be submitting and although it may look like a simple, linear DAG, it's actually more like the DAG from Monday's [exercise 4.2](../day1/part3-ex3-simple-dag.md) because of the [SUBDAG](http://research.cs.wisc.edu/htcondor/manual/v8.4/2_10DAGMan_Applications.html#SECTION003108900000000000000) within it! There is only one `.dag` file in the extracted folder, so where does the SUBDAG come from?
 
 Part 2: Finding anagramic squares
 ---------------------------------

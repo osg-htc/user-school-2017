@@ -3,7 +3,7 @@
 Wednesday Exercise 1.3: Using Wrapper Scripts to Submit Jobs
 ============================================================
 
-In this exercise, you will create a wrapper script to run the same program (`blastx`) as \\ the [previous exercise](/user-school/2017/materials/day3/part1-ex2-precompiled.md).
+In this exercise, you will create a wrapper script to run the same program (`blastx`) as \\ the [previous exercise](part1-ex2-precompiled.md).
 
 Background
 ----------

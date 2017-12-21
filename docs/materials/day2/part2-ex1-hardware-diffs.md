@@ -87,5 +87,5 @@ Due to the dynamic nature of the remote pool, the OSG may have noticed the deman
 Next exercise
 -------------
 
-Once completed, move onto the next exercise: [Software Differences in the OSG](/user-school/2017/materials/day2/part2-ex2-software-diffs.md)
+Once completed, move onto the next exercise: [Software Differences in the OSG](part2-ex2-software-diffs.md)
 
