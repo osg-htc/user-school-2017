@@ -1,3 +1,3 @@
 # OSG User School 2017
 
-Experimenting with a per-event website for the OSG User School.
+The source files for the OSG User School 2017 website.
