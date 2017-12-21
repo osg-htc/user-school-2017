@@ -1,4 +1,4 @@
-![Madison skyline](/img/madison-skyline-1.jpg) <br> <span style="font-size: smaller;">(Image copyright Ann Althouse, licensed under Creative Commons, <http://www.flickr.com/photos/althouse/141467660/>)</span>
+![Madison skyline](files/madison-skyline-1.jpg)<br><span style="font-size: smaller;">(Image copyright Ann Althouse, licensed under Creative Commons, <http://www.flickr.com/photos/althouse/141467660/>)</span>
 
 # OSG User School 2017
 
