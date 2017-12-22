@@ -1,21 +1,25 @@
-<style type="text/css"> pre em { font-style: normal; background-color: yellow; } pre strong { font-style: normal; font-weight: bold; color: \#008; } </style>
+<style type="text/css">
+  pre em { font-style: normal; background-color: yellow; }
+  pre strong { font-style: normal; font-weight: bold; color: \#008; }
+</style>
 
-Monday Exercise 3.3: Coordinating a Set of Jobs With a Simple DAG
-=================================================================
+# Monday Exercise 3.3: Coordinating a Set of Jobs With a Simple DAG
 
 The objective of this exercise is to learn the very basics of running a set of jobs, where our set is just one job.
 
-What is DAGMan?
----------------
+## What is DAGMan?
 
-In short, DAGMan lets you submit complex sequences of jobs as long as they can be expressed as a directed acylic graph. For example, you may wish to run a large parameter sweep but before the sweep run you need to prepare your data. After the sweep runs, you need to collate the results. This might look like this, assuming you want to sweep over five parameters:
+In short, DAGMan lets you submit complex sequences of jobs as long as they can be expressed as a directed acylic graph.
+For example, you may wish to run a large parameter sweep but before the sweep run you need to prepare your data.  After
+the sweep runs, you need to collate the results.  This might look like this, assuming you want to sweep over five
+parameters:
 
-<center><img src="%ATTACHURLPATH%/SimpleDag.gif" alt="SimpleDag.gif" width='480' height='267'/> </center>
+<img src="files/osgus17-day1-part3-ex3-simple-dag.gif" alt="simple DAG" width="480" height="267">
 
-DAGMan has many abilities, such as throttling jobs, recovery from failures, and more. More information about DAGMan can be found at [in the Condor manual](http://research.cs.wisc.edu/htcondor/manual/v8.5/2_10DAGMan_Applications.html).
+DAGMan has many abilities, such as throttling jobs, recovery from failures, and more.  More information about DAGMan can
+be found at [in the Condor manual](http://research.cs.wisc.edu/htcondor/manual/v8.5/2_10DAGMan_Applications.html).
 
-Submitting a Simple DAG
------------------------
+## Submitting a Simple DAG
 
 For our job, we will return briefly to the `sleep` program.
 
@@ -31,9 +35,11 @@ request_cpus      = 1
 queue
 ```
 
-We are going to get a bit more sophisticated in submitting our jobs now. Let's have three windows open. In one window, you'll submit the job. In another you will watch the queue, and in the third you will watch what DAGMan does.
+We are going to get a bit more sophisticated in submitting our jobs now.  Let's have three windows open.  In one window,
+you'll submit the job.  In another you will watch the queue, and in the third you will watch what DAGMan does.
 
-First we will create the most minimal DAG that can be created: a DAG with just one node. Put this into a file named `simple.dag`.
+First we will create the most minimal DAG that can be created: a DAG with just one node.  Put this into a file named
+`simple.dag`.
 
 ``` file
 Job Simple simple.sub
@@ -296,15 +302,11 @@ Clean up some of these files:
 %UCL_PROMPT_SHORT% <strong>rm simple.dag.*</strong>
 ```
 
-On Your Own
------------
+## On Your Own
 
--   Why does DAGman run as a Condor job?
--   Look at the submit file for DAGMan: What does `on_exit_remove` do? Why is this here?
+- Why does DAGman run as a Condor job?
+- Look at the submit file for DAGMan: What does `on_exit_remove` do? Why is this here?
 
-Challenge
----------
+## Challenge
 
--   What is the scheduler universe? Why does DAGMan use it?
-
-
+- What is the scheduler universe? Why does DAGMan use it?

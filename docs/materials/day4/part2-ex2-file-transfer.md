@@ -18,9 +18,12 @@ Also copy the data from the last exercise into the `thur-blast-data` directory. 
 
 ### Review: HTCondor File Transfer
 
-<center> <img src="%ATTACHURLPATH%/data\_tranfer\_1.jpg " alt="data\_tranfer\_1.jpg " width='400' height='150'/> </center>
+![OSG data transfer](files/osgus17-day4-part2-ex2-data-transfer.jpg)
 
-Recall that OSG does not have a shared filesystem! Instead, HTCondor *transfers* your executable and input files (listed with `transfer_input_files`) to a working directory on the execute node, regardless of how these files were arranged on the submit node. In this exercise we'll use the same `blastx` example job that we used previously, but modify the submit file and test how much memory and disk space it uses on the execute node.
+Recall that OSG does not have a shared filesystem!  Instead, HTCondor *transfers* your executable and input files
+(listed with `transfer_input_files`) to a working directory on the execute node, regardless of how these files were
+arranged on the submit node.  In this exercise we'll use the same `blastx` example job that we used previously, but
+modify the submit file and test how much memory and disk space it uses on the execute node.
 
 Start with a test submit file
 -----------------------------

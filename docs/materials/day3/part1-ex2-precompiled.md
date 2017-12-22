@@ -13,15 +13,17 @@ In the previous exercise, we used a piece of software that was available as sour
 Our Software Example
 --------------------
 
-The software we will be using for this example is a common tool for aligning genome and protein sequences against a reference database, the BLAST program.
+The software we will be using for this example is a common tool for aligning genome and protein sequences against a
+reference database, the BLAST program.
 
-1.  Search the internet for the BLAST software. Searches might include "blast executable \\
+1.  Search the internet for the BLAST software.  Searches might include "blast executable
 
-or "download blast software". Hopefully these searches will lead you to a BLAST website page that looks like this: \\ <p> <img src="%ATTACHURLPATH%/blast\_landing\_page.png" alt="blast\_landing\_page.png" width="750"/> </p>\\
+    or "download blast software".  Hopefully these searches will lead you to a BLAST website page that looks like this:
+    ![BLAST landing page](files/osgus17-day3-part1-ex2-blast-landing-page.png)
 
-1.  Click on the title that says "Download BLAST" and then look for the link that has the latest installation and source code. You \\
-
-should end up on a page with a list of each version of BLAST that is available for different operating systems. \\
+1.  Click on the title that says "Download BLAST" and then look for the link that has the latest installation and source
+    code.  You should end up on a page with a list of each version of BLAST that is available for different operating
+    systems.
 
 1.  We could download the source and compile it ourselves, but instead, we're going to use \\
 
@@ -110,4 +112,3 @@ requirements = (OpSys == "LINUX")
 \\
 
 5. Submit the blast job using `condor_submit`. Once the job starts, it should run in just a few minutes and produce a file called `results.txt`.
-
