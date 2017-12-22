@@ -68,8 +68,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>The executable we'll use in this exercise and later today is the same <strong><code>blastx</code></strong> executable from the previous exercise.</p>
 <p>Also copy the data from the last exercise into the <code>thur-blast-data</code> directory. You'll need the <code>mouse.fa</code> file and the <code>pdbaa</code> directory from the last exercise, but you'll end up making a new submit file.</p>
 <h3 id="review-htcondor-file-transfer">Review: HTCondor File Transfer<a class="headerlink" href="#review-htcondor-file-transfer" title="Permanent link">&para;</a></h3>
-<p><center> <img src="%ATTACHURLPATH%/data\_tranfer\_1.jpg " alt="data\_tranfer\_1.jpg " width='400' height='150'/> </center></p>
-<p>Recall that OSG does not have a shared filesystem! Instead, HTCondor <em>transfers</em> your executable and input files (listed with <code>transfer_input_files</code>) to a working directory on the execute node, regardless of how these files were arranged on the submit node. In this exercise we'll use the same <code>blastx</code> example job that we used previously, but modify the submit file and test how much memory and disk space it uses on the execute node.</p>
+<p><img alt="OSG data transfer" src="../files/osgus17-day4-part2-ex2-data-transfer.jpg" /></p>
+<p>Recall that OSG does not have a shared filesystem!  Instead, HTCondor <em>transfers</em> your executable and input files
+(listed with <code>transfer_input_files</code>) to a working directory on the execute node, regardless of how these files were
+arranged on the submit node.  In this exercise we'll use the same <code>blastx</code> example job that we used previously, but
+modify the submit file and test how much memory and disk space it uses on the execute node.</p>
 <h2 id="start-with-a-test-submit-file">Start with a test submit file<a class="headerlink" href="#start-with-a-test-submit-file" title="Permanent link">&para;</a></h2>
 <p>We've started a submit file for you, below, which you'll add to in the remaining steps.</p>
 <div class="codehilite"><pre><span></span>executable = 
