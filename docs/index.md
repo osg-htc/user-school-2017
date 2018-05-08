@@ -48,7 +48,7 @@ interest!
 
 ## Contact Us
 
-The OSG User School is part of the [OSG Outreach Area](https://opensciencegrid.github.io/outreach/)&nbsp;&mdash; please
+The OSG User School is part of the [OSG Outreach Area](https://opensciencegrid.org/outreach/)&nbsp;&mdash; please
 visit that site to learn about other OSG Outreach activities.
 
 If you have any questions about the School, the application process, or anything else, feel free to email us:
