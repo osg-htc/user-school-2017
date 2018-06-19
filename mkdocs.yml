@@ -4,6 +4,7 @@ repo_name: null
 repo_url: null
 theme:
   name: windmill
+  custom_dir: theme-customizations
 
 extra:
   article_nav_top: false
