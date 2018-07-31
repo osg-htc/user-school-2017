@@ -35,7 +35,7 @@
       var is_top_frame = (window === window.parent);
         
         var pageToc = [
-          {title: "OSG User School 2017", url: "#osg-user-school-2017", children: [
+          {title: "OSG User School 2017", url: "#_top", children: [
               {title: "Applications", url: "#applications" },
               {title: "Information for Participants", url: "#information-for-participants" },
               {title: "Contact Us", url: "#contact-us" },
@@ -43,9 +43,7 @@
         ];
 
     </script>
-    <script src="./js/base.js"></script>
-      <script src="./search/require.js"></script>
-      <script src="./search/search.js"></script> 
+    <script src="./js/base.js"></script> 
 </head>
 
 <body>
@@ -63,7 +61,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
           ><i class="fa fa-search" aria-hidden="true"></i></button>
 
         <div class="input-group input-group-sm wm-top-search">
-          <input type="text" name="q" class="form-control" id="mkdocs-search-query" placeholder="Search">
+          <input type="text" name="q" class="form-control" id="mkdocs-search-query" placeholder="Search" autocomplete="off">
           <span class="input-group-btn" role="search">
             
             <button class="btn btn-default dropdown-toggle collapse" data-toggle="dropdown" type="button"><span class="caret"></span></button>
@@ -301,6 +299,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   </div>
 
 <div class="container-fluid wm-page-content">
+  <a name="_top"></a>
     
 
     <p><img alt="Madison skyline" src="./files/madison-skyline-1.jpg" /><br><span style="font-size: smaller;">(Image copyright Ann Althouse, licensed under Creative Commons, <a href="http://www.flickr.com/photos/althouse/141467660/">http://www.flickr.com/photos/althouse/141467660/</a>)</span></p>
@@ -381,6 +380,6 @@ visit that site to learn about other OSG Outreach activities.</p>
 </body>
 </html>
 <!--
-MkDocs version : 0.17.4
-Build Date UTC : 2018-06-19 14:39:38
+MkDocs version : 0.17.5
+Build Date UTC : 2018-07-31 17:46:08
 -->
