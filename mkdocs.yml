@@ -15,7 +15,7 @@ extra_css:
 # Suppress weird JavaScript problems with development server
 extra_javascript: []
 
-pages:
+nav:
   - User School 2017:           index.md
   - Logistics:
     - General information:        logistics/index.md
