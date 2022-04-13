@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day4/part4-ex1-input/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day4/part4-ex1-input/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>4.1. Shared FS input - OSG User School 2017</title>
@@ -69,9 +69,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="previous-files">Previous Files<a class="headerlink" href="#previous-files" title="Permanent link">&para;</a></h2>
 <h3 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
 <p>Like the previous example, we'll start by downloading our source movie files into the Gluster directory. Run this command <strong>in your Gluster directory</strong>.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/videos.tar.gz&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/videos.tar.gz&lt;/strong&gt;
+</code></pre>
 
 <p>While the files are copying, feel free to open a second connection to <code>learn.chtc.wisc.edu</code> and follow the instructions below. Once the files have finished downloading, untar them.</p>
 <h3 id="software-executable-submit-file">Software, Executable, Submit File<a class="headerlink" href="#software-executable-submit-file" title="Permanent link">&para;</a></h3>
@@ -83,18 +82,16 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Change the first command of your <code>run_ffmpeg.sh</code> script to: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>cp /mnt/gluster/%RED%username%ENDCOLOR%/test_open_terminal.mov ./
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">cp /mnt/gluster/%RED%username%ENDCOLOR%/test_open_terminal.mov ./
+</code></pre>
 
 <p>\ You should use your username on <code>learn.chtc.wisc.edu</code> in the path above. If you have a version of the script that uses arguments instead of the filenames, \ that's okay.</p>
 <h3 id="submit-file">Submit File<a class="headerlink" href="#submit-file" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Remove any previous requirements and add a line to the file (before the final queue statement) that ensures your job will land on computers that have access to Gluster: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>requirements = (Target.HasGluster == true)
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">requirements = (Target.HasGluster == true)
+</code></pre>
 
 <h2 id="initial-job">Initial Job<a class="headerlink" href="#initial-job" title="Permanent link">&para;</a></h2>
 <p>As before, we should test our job submission with a single <code>mov</code> file before submitting jobs for all three. Alter your submit file (if necessary) to \ run a job that converts the <code>test_open_terminal.mov</code> file.</p>
@@ -109,6 +106,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Change your submit file as in the previous exercise in order to submit 3 jobs to convert all three files!</p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -136,8 +138,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

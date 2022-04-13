@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day4/part3-ex2-stashcache-shared/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day4/part3-ex2-stashcache-shared/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>3.2. StashCache Ⅰ - OSG User School 2017</title>
@@ -38,7 +38,7 @@
               {title: "Place the Database in StashCache", url: "#place-the-database-in-stashcache" },
               {title: "Modify the Submit File and Wrapper", url: "#modify-the-submit-file-and-wrapper" },
               {title: "Submit the Job", url: "#submit-the-job" },
-              {title: "Note: Keeping StashCache 'Clean'", url: "#note-keeping-stashcache-clean" },
+              {title: "Note: Keeping StashCache \u0027Clean\u0027", url: "#note-keeping-stashcache-clean" },
           ]},
         ];
 
@@ -79,16 +79,14 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>As the <code>public</code> directory name indicates *your files placed in the <code>public</code> directory will be accessible to anyone's jobs if they know how to use <code>stashcp</code>, though no one else will be able to edit the files, since only you can <em>place</em> or <em>change</em> files in your <code>public</code> space. For your own work in the future, make sure that you never put any sensitive data in such locations.</p>
 <h3 id="check-the-file-on-osg-connect">Check the file on OSG Connect<a class="headerlink" href="#check-the-file-on-osg-connect" title="Permanent link">&para;</a></h3>
 <p>Next, you can check for the file and test the command that we'll use in jobs on the OSG Connect login node:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;ls public&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;ls public&lt;/strong&gt;
+</code></pre>
 
 <p>Now, load the <code>stashcp</code> module, which will allow you to test a copy of the file from StashCache into your home directory on <code>login.osgconnect.net</code>:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;module load stashcp&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;module load xrootd&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;stashcp /user/%RED%username%ENDCOLOR%/public/pdbaa_files.tar.gz ./&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;module load stashcp&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;module load xrootd&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;stashcp /user/%RED%username%ENDCOLOR%/public/pdbaa_files.tar.gz ./&lt;/strong&gt;
+</code></pre>
 
 <p>You should now see the <code>pdbaa_files.tar.gz</code> file in your current directory. Notice that we had to include the <strong><code>/user</code></strong> and <strong><code>username</code></strong> in the file path for <code>stashcp</code>, which make sure you're copying from <strong>your</strong> <code>public</code> space.</p>
 <h2 id="modify-the-submit-file-and-wrapper">Modify the Submit File and Wrapper<a class="headerlink" href="#modify-the-submit-file-and-wrapper" title="Permanent link">&para;</a></h2>
@@ -96,18 +94,16 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>At the top of the wrapper script (after <code>#!/bin/bash</code>), add the line to activate OSG Connect modules, followed by the above two lines that load the <code>stashcp</code> module and to copy the <code>pdbaa_files.tar.gz</code> file into the current directory of the job:</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="k">module</span> <span class="n">load</span> <span class="n">xrootd</span>
-<span class="k">module</span> <span class="n">load</span> <span class="n">stashcp</span>
-<span class="n">stashcp</span> /<span class="n">user</span>/<span class="nv">%RED%username%ENDCOLOR</span>%/<span class="n">public</span><span class="o">/</span><span class="n">pdbaa_files</span>.<span class="n">tar</span>.<span class="n">gz</span> ./
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">module load xrootd
+module load stashcp
+stashcp /user/%RED%username%ENDCOLOR%/public/pdbaa_files.tar.gz ./
+</code></pre>
 
 <ol>
 <li>Since HTCondor will no longer transfer or download the file for you, make sure to add the following line (or modify your existing <code>rm</code> command, if you're confident) to make sure the <code>pdbaa_files.tar.gz</code> file is also deleted and not copied back as perceived output.</li>
 </ol>
-<div class="codehilite"><pre><span></span>rm pdbaa_files.tar.gz
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">rm pdbaa_files.tar.gz
+</code></pre>
 
 <ol>
 <li>
@@ -117,17 +113,15 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Add the following line to the submit file and update the "requirements" statement to require servers with OSG Connect modules (for accessing the <code>stashcp</code> module), somewhere before the word <code>queue</code>.</p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span>+WantsStashCache = true
+<pre class="codehilite"><code class="language-file">+WantsStashCache = true
 requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
-</pre></div>
-
+</code></pre>
 
 <ol>
 <li>Confirm that your queue statement is correct for the current directory. It should be something like:</li>
 </ol>
-<div class="codehilite"><pre><span></span>queue inputfile matching mouse_rna.fa.*
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">queue inputfile matching mouse_rna.fa.*
+</code></pre>
 
 <p>And that mouse_rna.fa.* files exist in the current directory (you should have copied them from the previous exercise directory.</p>
 <h2 id="submit-the-job">Submit the Job<a class="headerlink" href="#submit-the-job" title="Permanent link">&para;</a></h2>
@@ -136,6 +130,11 @@ requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
 <p>Just as for data on a web proxy, it is VERY important to remove old files from StashCache when you no longer need them, especially so that you'll have plenty of space for such files in the future. For example, you would delete (<code>rm</code>) files from <code>public</code> on <code>user-training.osgconnect.net</code> when you don't need them there anymore, but only after all jobs have finished. The next time you use StashCache after the school, remember to first check for old files that you can delete.</p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -163,8 +162,8 @@ requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

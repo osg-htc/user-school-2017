@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day4/part4-ex2-output/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day4/part4-ex2-output/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>4.2. Shared FS output - OSG User School 2017</title>
@@ -62,19 +62,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>This exercise will be the reverse of the previous exercise! Instead of large input/small output, we will be using a program \ that has no input except for a few arguments on the command line, but produces a file that is several GB in size. \ As before, we will need to write a shell script that runs the program and handles the data.</p>
 <h2 id="the-program">The Program<a class="headerlink" href="#the-program" title="Permanent link">&para;</a></h2>
 <p>If you haven't already, log in to <code>learn.chtc.wisc.edu</code>. Download the software package and untar it.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/motif-flanks.tar.gz&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tar -xzf motif-flanks.tar.gz&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/motif-flanks.tar.gz&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;tar -xzf motif-flanks.tar.gz&lt;/strong&gt;
+</code></pre>
 
 <p>Use the <code>cd</code> command to enter the unpacked <code>motif-flanks</code> directory. Take a look at the README file and then do the following:</p>
 <ol>
 <li>Compile the code. 2. Run the program without any arguments. 3. Based on the README, what is the largest amount of data we might expect?</li>
 </ol>
 <p>This program generates all permutations of nucleotide sequences \ surrounding a given DNA motif. We can choose the length of permutation we want both \ before and after a motif of our choice. To use this program on the command line and save the output to a FASTA file, we can use the command:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;./motif-flanks <span class="m">2</span> AGTTCATGCCT <span class="m">2</span> &gt; sequences.fa&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;./motif-flanks 2 AGTTCATGCCT 2 &gt; sequences.fa&lt;/strong&gt;
+</code></pre>
 
 <p>According to the usage information and README, the two numerical arguments can add up to 13, at most, and the middle sequence can be any \ DNA sequence up to 20 characters. The largest output we can expect is around 4 GB.</p>
 <h2 id="test-job">Test Job<a class="headerlink" href="#test-job" title="Permanent link">&para;</a></h2>
@@ -88,12 +86,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Write the script and then check it against the script below. Yours might look slightly different. \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
+<pre class="codehilite"><code class="language-file">#!/bin/sh
 
-./motif-flanks <span class="m">4</span> GATTTTCGATC <span class="m">4</span> &gt; sequences.fa
+./motif-flanks 4 GATTTTCGATC 4 &gt; sequences.fa
 mv sequences.fa /mnt/gluster/%RED%username%ENDCOLOR%/
-</pre></div>
-
+</code></pre>
 
 <ol>
 <li>Note that the two arguments in the script (4 and 4) are much smaller than the total possible for the software (two values that add up to 13). This is \</li>
@@ -115,13 +112,17 @@ mv sequences.fa /mnt/gluster/%RED%username%ENDCOLOR%/
 <p>If your job successfully copied the <code>sequences.fa</code> file to Gluster and did <strong>not</strong> return it to your submission directory on \ the submit server, congratulations! Everything is working as it should and you can now submit a full job.</p>
 <h2 id="final-job">Final Job<a class="headerlink" href="#final-job" title="Permanent link">&para;</a></h2>
 <p>Having done a test, it should be straightforward to run a "full scale" job. Edit your <code>run_motif.sh</code> executable so that the <code>motif-flanks</code> command \ uses larger numerical arguments:</p>
-<div class="codehilite"><pre><span></span>./motif-flanks 6 GATTTTCGATC 7 &gt; sequences.fa
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">./motif-flanks 6 GATTTTCGATC 7 &gt; sequences.fa
+</code></pre>
 
 <p>Then submit your job. When it completes, check the size of the output file in Gluster.</p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -149,8 +150,8 @@ mv sequences.fa /mnt/gluster/%RED%username%ENDCOLOR%/
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

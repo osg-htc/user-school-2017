@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day4/part3-ex3-stashcache-unique/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day4/part3-ex3-stashcache-unique/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>3.3. StashCache Ⅱ - OSG User School 2017</title>
@@ -68,9 +68,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>The video files are currently stored on the squid proxy from the first exercise this afternoon. To place them in Stash, download them \</li>
 </ol>
 <p>using <code>wget</code>: \</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/osgschool17/videos.tar.gz&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/osgschool17/videos.tar.gz&lt;/strong&gt;
+</code></pre>
 
 <p>\</p>
 <ol>
@@ -78,23 +77,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>How big are the three files? Which is the smallest? (Find out with <code>ls -lh</code>.)</li>
 <li>We're going to need a list of these files later. For now, let's save that list to a file in this directory by running <code>ls</code> and redirecting the output to a file: \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;ls *.MOV *.mov &gt; movie_list.txt&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;ls *.MOV *.mov &gt; movie_list.txt&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>Once you've examined the three <code>mov</code> files and created the list of files, remove the original <code>tar.gz</code> file.</li>
 </ol>
 <h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">&para;</a></h2>
 <p>We'll be using a multi-purpose media tool called <code>ffmpeg</code> \ to convert video formats. The basic command to convert a file looks like this: \</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;./ffmpeg -i input.mov output.mp4&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;./ffmpeg -i input.mov output.mp4&lt;/strong&gt;
+</code></pre>
 
 <p>In order to resize our files, we're going to manually set the video bitrate and resize the frames, so that the resulting file is smaller.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;./ffmpeg -i input.mp4 -b:v 400k -s 640x360 output.mp4&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;./ffmpeg -i input.mp4 -b:v 400k -s 640x360 output.mp4&lt;/strong&gt;
+</code></pre>
 
 <p>To get the <code>ffmpeg</code> program do the following:</p>
 <ol>
@@ -102,17 +98,15 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>We'll be downloading the <code>ffmpeg</code> pre-built static binary from this page: <a href="http://johnvansickle.com/ffmpeg/">http://johnvansickle.com/ffmpeg/</a>. \</li>
 </ol>
 <p>Look for the <code>x86_64</code> build. \</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>Once the binary is downloaded, un-tar it, and then copy the main <code>ffmpeg</code> program into your current directory: \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tar -xf ffmpeg-release-64bit-static.tar.xz&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cp ffmpeg-3.3.2-64bit-static/ffmpeg ./&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tar -xf ffmpeg-release-64bit-static.tar.xz&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;cp ffmpeg-3.3.2-64bit-static/ffmpeg ./&lt;/strong&gt;
+</code></pre>
 
 <h2 id="script">Script<a class="headerlink" href="#script" title="Permanent link">&para;</a></h2>
 <p>We want to write a script that uses <code>ffmpeg</code> to convert a <code>.mov</code> file to a smaller format. Our script will need to <em>copy</em> \ that movie file from Stash to the job's current working directory (as in the <a href="../part3-ex2-stashcache-shared/">previous exercise</a>, <em>run</em> the appropriate <code>ffmpeg</code> command, \ and then <em>remove</em> the original movie file so that it doesn't get transferred back to the submit server. This last step is \ particularly important, as otherwise you will have large files transferring into the submit server and filling up your home directory space.</p>
@@ -120,19 +114,18 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>Create a file called <code>run_ffmpeg.sh</code>, that does the steps described above. Use the name of the smallest <code>.mov</code> file \</li>
 </ol>
 <p>in the <code>ffmpeg</code> command. Once you've written your script, check it against the example below: \</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+<pre class="codehilite"><code class="language-file">#!/bin/bash
 
 module load stashcp
 stashcp /user/%RED%username%ENDCOLOR%/public/test_open_terminal.mov ./
 ./ffmpeg -i test_open_terminal.mov -b:v 400k -s 640x360 test_open_terminal.mp4
 rm test_open_terminal.mov
-</pre></div>
-
+</code></pre>
 
 <p>\ In your script, the username should be replaced by your <code>osg-connect</code> username.</p>
 <p>Ultimately we'll want to submit several jobs (one for each <code>.mov</code> file), but to start with, we'll run one job to \ make sure that everything works.</p>
 <h2 id="submit-file">Submit File<a class="headerlink" href="#submit-file" title="Permanent link">&para;</a></h2>
-<p>Create a submit file for this job, based on other submit files from the school (<a href="../UserSchool17Thurs22HTCondorFT#Start_with_a_test_submit_file">This file, for example</a>.) Things to consider:</p>
+<p>Create a submit file for this job, based on other submit files from the school (<a href="UserSchool17Thurs22HTCondorFT#Start_with_a_test_submit_file">This file, for example</a>.) Things to consider:</p>
 <ol>
 <li>We'll be copying the video file into the job's working directory, so make sure to request enough disk space for the input <code>mov</code> file and the output <code>mp4</code> file. \</li>
 </ol>
@@ -144,17 +137,15 @@ rm test_open_terminal.mov
 <ol>
 <li>Note that we <strong>do</strong> need to transfer the <code>ffmpeg</code> program that we downloaded above. \</li>
 </ol>
-<div class="codehilite"><pre><span></span>transfer_input_files = ffmpeg
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">transfer_input_files = ffmpeg
+</code></pre>
 
 <ol>
 <li>Add the same requirements as the previous exercise: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>+WantsStashCache = true
+<pre class="codehilite"><code class="language-file">+WantsStashCache = true
 requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
-</pre></div>
-
+</code></pre>
 
 <h2 id="initial-job">Initial Job<a class="headerlink" href="#initial-job" title="Permanent link">&para;</a></h2>
 <p>With everything in place, submit the job. Once it finishes, we should check to make sure everything ran as expected:</p>
@@ -176,14 +167,13 @@ requirements = (OpSys == &quot;LINUX&quot;) &amp;&amp; (HAS_MODULES =?= true)
 <li>The input file will change with every job - and don't forget that the output file will too! Let's make them both into arguments. \</li>
 </ol>
 <p>To add arguments to a bash script, we use the notation <code>$1</code> for the first argument (our input file) and <code>$2</code> for the second argument (our output file name). \ The final script should look like this: \</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+<pre class="codehilite"><code class="language-file">#!/bin/bash
 
 module load stashcp
-stashcp /user/%RED%username%ENDCOLOR%/public/<span class="nv">$1</span> ./
-./ffmpeg -i <span class="nv">$1</span> -b:v 400k -s 640x360 <span class="nv">$2</span>
-rm <span class="nv">$1</span>
-</pre></div>
-
+stashcp /user/%RED%username%ENDCOLOR%/public/$1 ./
+./ffmpeg -i $1 -b:v 400k -s 640x360 $2
+rm $1
+</code></pre>
 
 <p>\ Note that we use the input file name multiple times in our script, so we'll have to use <code>$1</code> multiple times as well.</p>
 <h3 id="modify-your-submit-file">Modify your submit file<a class="headerlink" href="#modify-your-submit-file" title="Permanent link">&para;</a></h3>
@@ -191,16 +181,14 @@ rm <span class="nv">$1</span>
 <li>We now need to tell each job what arguments to use. We will do this by adding an arguments line to our submit file. Because we'll only have \</li>
 </ol>
 <p>the input file name, the "output" file name will be the input file name with the <code>mp4</code> extension. That should look like this: \</p>
-<div class="codehilite"><pre><span></span>arguments = $(mov) $(mov).mp4
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">arguments = $(mov) $(mov).mp4
+</code></pre>
 
 <ol>
 <li>To set these arguments, we will use the <code>queue .. matching</code> syntax that we learned on <a href="../../day1/part2-ex6-queue-from/">Monday</a>. To \ do so, we need to create a list of our input files. 3. In our submit file, we can then change our queue statement to: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>queue mov from movie_list.txt
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">queue mov from movie_list.txt
+</code></pre>
 
 <p>Once you've made these changes, try submitting all the jobs!</p>
 <h2 id="bonus">Bonus<a class="headerlink" href="#bonus" title="Permanent link">&para;</a></h2>
@@ -209,41 +197,50 @@ rm <span class="nv">$1</span>
 <li><code>movie_list.txt</code> 3. Your submit file 2. <code>run_ffmpeg.sh</code></li>
 </ol>
 <p>to do so?</p>
-<p><details>
-  <summary>Show hint</summary> Here's the changes you can make to the various files:</p>
-<ol>
-<li><code>movie_list.txt</code> \</li>
-</ol>
-<div class="codehilite"><pre><span></span>ducks.MOV ducks.mp4 500k 1280x720
+<details>
+  <summary>Show hint</summary> Here's the changes you can make to the various files:
+
+1.  `movie_list.txt` \\
+
+
+<pre class="codehilite"><code class="language-file">ducks.MOV ducks.mp4 500k 1280x720
 teaching.MOV teaching.mp4 400k 320x180
 test_open_terminal.mov terminal.mp4 600k 640x360
-</pre></div>
+</code></pre>
 
 
-<ol>
-<li>Submit file\</li>
-</ol>
-<div class="codehilite"><pre><span></span>arguments = $(mov) $(mp4) $(bitrate) $(size)
+
+2. Submit file\\
+
+
+<pre class="codehilite"><code class="language-file">arguments = $(mov) $(mp4) $(bitrate) $(size)
 
 queue mov,mp4,bitrate,size from movie_list.txt
-</pre></div>
+</code></pre>
 
 
-<ol>
-<li><code>run_ffmpeg.sh</code> \</li>
-</ol>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+3. `run_ffmpeg.sh` \\
+
+
+<pre class="codehilite"><code class="language-file">#!/bin/bash
 
 module load stashcp
-stashcp /user/%RED%username%ENDCOLOR%/public/<span class="nv">$1</span> ./
-./ffmpeg -i <span class="nv">$1</span> -b:v <span class="nv">$3</span> -s <span class="nv">$4</span> <span class="nv">$2</span>
-rm <span class="nv">$1</span>
-</pre></div>
+stashcp /user/%RED%username%ENDCOLOR%/public/$1 ./
+./ffmpeg -i $1 -b:v $3 -s $4 $2
+rm $1
+</code></pre>
 
 
-<p></details></p>
+
+</details>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -271,8 +268,8 @@ rm <span class="nv">$1</span>
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

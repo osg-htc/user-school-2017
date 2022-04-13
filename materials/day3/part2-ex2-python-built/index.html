@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day3/part2-ex2-python-built/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day3/part2-ex2-python-built/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>2.2. Packaging Python - OSG User School 2017</title>
@@ -71,9 +71,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>Create a directory for this exercise on <code>learn.chtc.wisc.edu</code> and <code>cd</code> into it.</li>
 <li>Download the Python source code from <a href="https://www.python.org/">https://www.python.org/</a>. \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>Of our options - submit server, interactive job, personal computer - which should we use for this installation/packaging process? Once you have a guess, move to the next step.</li>
@@ -83,9 +82,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Make a copy of the interactive submit file from <a href="../part1-ex4-prepackaged/">Exercise 1.4</a> and change the <code>transfer_input_files</code> line to the Python tarball you just downloaded. Then submit it using the <code>-i</code> flag. \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit -i build.submit&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit -i build.submit&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>Once the interactive job begins, we can start our installation process. First, we have to determine how to install Python to a specific location in our working directory.<ol>
@@ -95,20 +93,18 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 </ol>
 <p>instructions near the top of the <code>README</code>. Based on that short introduction, we can see the main steps of installation will be: \</p>
-<div class="codehilite"><pre><span></span>./configure
+<pre class="codehilite"><code>./configure
 make
 make install
-</pre></div>
-
+</code></pre>
 
 <p>\ \ This looks a lot like the Open BUGS installation from earlier today! It turns out that this three-stage process (configure, make, make install) is a common \ way to install many software packages. \ \ Also like the Open BUGS installation, the default installation \ location for Python requires <code>sudo</code> (administrative privileges) to install. However, we'd like to install to a specific location in the working directory \ so that we can compress that installation directory into a tarball. How did we do this with Open BUGS? \</p>
 <ol>
 <li>With Open BUGS we used the <code>-prefix</code> option with the <code>configure</code> script. Let's see if the Python \</li>
 </ol>
 <p><code>configure</code> script has this option by using the "help" option. \ \</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;./configure --help&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;./configure --help&lt;/strong&gt;
+</code></pre>
 
 <p>\ \ Sure enough, there's a list of all the different options that can be passed to the <code>configure</code> script, which includes <code>-prefix</code>. Therefore, we can use the \ <code>$(pwd)</code> command in order to set the path correctly, just as we did earlier today.</p>
 <ol>
@@ -117,69 +113,62 @@ make install
 </ol>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cd <span class="nv">$_CONDOR_SCRATCH_DIR</span>&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;mkdir python&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cd $_CONDOR_SCRATCH_DIR&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;mkdir python&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>Move into the <code>Python 3.6.1</code> directory and run the installation commands. These may take a few minutes each. \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cd Python-3.6.1&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;./configure --prefix<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/../python&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;make&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;make install&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cd Python-3.6.1&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;./configure --prefix=$(pwd)/../python&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;make&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;make install&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>If I move back to the main job working directory, and look in the <code>python</code> subdirectory, I should see a Python installation. \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cd ..&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;ls python/&lt;/strong&gt;
-<span class="go">bin  include  lib  share</span>
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cd ..&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;ls python/&lt;/strong&gt;
+bin  include  lib  share
+</code></pre>
 
 <ol>
 <li>I have successfully created a self-contained Python installation. Now it just needs to be tarred up! \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tar -czf prebuilt_python.tar.gz python/&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tar -czf prebuilt_python.tar.gz python/&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>Before exiting, we might want to know how we installed Python for later reference. \</li>
 </ol>
 <p>Enter the following commands to save our history to a file: \</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;history &gt; python_install.txt&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;history &gt; python_install.txt&lt;/strong&gt;
+</code></pre>
 
 <ol>
 <li>Exit the interactive job. \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;exit&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;exit&lt;/strong&gt;
+</code></pre>
 
 <h2 id="python-script">Python Script<a class="headerlink" href="#python-script" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create a script with the following lines called <code>fib.py</code>. \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<pre class="codehilite"><code class="language-file">import sys
+import os
 
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Usage: </span><span class="si">%s</span><span class="s1"> MAXIMUM&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">maximum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">n1</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">while</span> <span class="n">n2</span> <span class="o">&lt;=</span> <span class="n">maximum</span><span class="p">:</span>
-    <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;The greatest Fibonacci number up to </span><span class="si">%d</span><span class="s1"> is </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">maximum</span><span class="p">,</span> <span class="n">n1</span><span class="p">))</span>
-</pre></div>
-
+if len(sys.argv) != 2:
+    print('Usage: %s MAXIMUM' % (os.path.basename(sys.argv[0])))
+    sys.exit(1)
+maximum = int(sys.argv[1])
+n1 = n2 = 1
+while n2 &lt;= maximum:
+    n1, n2 = n2, n1 + n2
+print('The greatest Fibonacci number up to %d is %d' % (maximum, n1))
+</code></pre>
 
 <ol>
 <li>What command line arguments does this script take? Try running it on the submit server.</li>
@@ -206,23 +195,26 @@ make install
 <ol>
 <li>Make a copy of a previous submit file in your local directory (the Open BUGS submit file could be a good starting point). What changes need to be made to run this Python job? 2. Modify your submit file, then make sure you've included the key lines below: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>executable = run_fib.sh
+<pre class="codehilite"><code class="language-file">executable = run_fib.sh
 transfer_input_files = fib.py, prebuilt_python.tar.gz
-</pre></div>
-
+</code></pre>
 
 <ol>
 <li>Because we pre-built our Python installation on a machine running Scientific Linux, version 6.something, we should request machines with similar characteristics. Add the following line to your submit file as well: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>requirements = (OpSys == &quot;LINUX&quot; &amp;&amp; OpSysMajorVer == 6 )
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">requirements = (OpSys == &quot;LINUX&quot; &amp;&amp; OpSysMajorVer == 6 )
+</code></pre>
 
 <ol>
 <li>Submit the job using <code>condor_submit</code>. 4. Check the <code>.out</code> file to see if the job completed.</li>
 </ol>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -250,8 +242,8 @@ transfer_input_files = fib.py, prebuilt_python.tar.gz
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

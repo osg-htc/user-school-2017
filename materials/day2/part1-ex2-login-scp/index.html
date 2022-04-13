@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day2/part1-ex2-login-scp/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day2/part1-ex2-login-scp/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>1.2. Submit host - OSG User School 2017</title>
@@ -68,24 +68,21 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>To <strong>create</strong> a tarball named <code>&lt;archive filename&gt;</code> containing <code>&lt;archive contents&gt;</code>, use the following command: \</li>
 </ul>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tar -czvf &lt;archive filename&gt; &lt;archive contents&gt;&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tar -czvf &lt;archive filename&gt; &lt;archive contents&gt;&lt;/strong&gt;
+</code></pre>
 
 <p>\ <p> Where <code>&lt;archive filename&gt;</code> should end in <code>.tar.gz</code> and <code>&lt;archive contents&gt;</code> can be a list of any number of files and/or folders, separated by spaces.</p></p>
 <ul>
 <li>To <strong>extract</strong> the files from a tarball into the current directory: \</li>
 </ul>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tar -xzvf &lt;archive filename&gt;&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tar -xzvf &lt;archive filename&gt;&lt;/strong&gt;
+</code></pre>
 
 <ul>
 <li>To <strong>list</strong> the files within a tarball: \</li>
 </ul>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tar -tzvf &lt;archive filename&gt;&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tar -tzvf &lt;archive filename&gt;&lt;/strong&gt;
+</code></pre>
 
 <p>Using the above knowledge, log into <code>learn.chtc.wisc.edu</code>, create a tarball that contains Monday's exercise 2.4 directory, and verify that it contains all the proper files.</p>
 <h3 id="comparing-compressed-sizes">Comparing compressed sizes<a class="headerlink" href="#comparing-compressed-sizes" title="Permanent link">&para;</a></h3>
@@ -103,28 +100,24 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="transferring-files">Transferring files<a class="headerlink" href="#transferring-files" title="Permanent link">&para;</a></h2>
 <h3 id="using-secure-copy">Using secure copy<a class="headerlink" href="#using-secure-copy" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/Secure_copy">Secure copy</a> (<code>scp</code>) is a command based on <code>SSH</code> that lets you securely copy files between two different hosts. It takes similar arguments to the <code>cp</code> command that you are familiar with but also takes additional host information:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;scp &lt;<span class="nb">source</span> <span class="m">1</span>&gt; &lt;<span class="nb">source</span> <span class="m">2</span>&gt;...&lt;<span class="nb">source</span> N&gt; &lt;remote host&gt;:&lt;remote path&gt; 
-<span class="go">&lt;/strong&gt;</span>
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;scp &lt;source 1&gt; &lt;source 2&gt;...&lt;source N&gt; &lt;remote host&gt;:&lt;remote path&gt; 
+&lt;/strong&gt;
+</code></pre>
 
 <p>For example, if I were logged in to <code>learn.chtc.wisc.edu</code> and wanted to copy the file <code>foo</code> from my current directory to my home directory on <code>osg-learn.chtc.wisc.edu</code>, the command would look like this:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;scp foo osg-learn.chtc.wisc.edu:~
-<span class="go">&lt;/strong&gt;</span>
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;scp foo osg-learn.chtc.wisc.edu:~
+&lt;/strong&gt;
+</code></pre>
 
 <p>Additionally, I could also pull files from <code>osg-learn.chtc.wisc.edu</code> to <code>learn.chtc.wisc.edu</code>. The following command copies <code>bar</code> from my home directory on <code>osg-learn.chtc.wisc.edu</code> to my current directory on <code>learn.chtc.wisc.edu</code>:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;scp osg-learn.chtc.wisc.edu:~/bar .
-<span class="go">&lt;/strong&gt;</span>
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;scp osg-learn.chtc.wisc.edu:~/bar .
+&lt;/strong&gt;
+</code></pre>
 
 <p>You can also copy folders between hosts using the <code>-r</code> option. If I kept all my files from Monday's exercise 1.3 in a folder named <code>monday-1.3</code> on <code>learn.chtc.wisc.edu</code>, I could use the following command to copy them to my home directory on <code>osg-learn.chtc.wisc.edu</code>:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;scp -r monday-1.3 osg-learn.chtc.wisc.edu:~
-<span class="go">&lt;/strong&gt;</span>
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;scp -r monday-1.3 osg-learn.chtc.wisc.edu:~
+&lt;/strong&gt;
+</code></pre>
 
 <p>Try copying the tarball you created earlier in this exercise on <code>learn.chtc.wisc.edu</code> to <code>osg-learn.chtc.wisc.edu</code>.</p>
 <h3 id="secure-copy-from-your-laptop">Secure copy from your laptop<a class="headerlink" href="#secure-copy-from-your-laptop" title="Permanent link">&para;</a></h3>
@@ -140,10 +133,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ol>
 <h3 id="extra-challenge-using-rsync">Extra challenge: Using rsync<a class="headerlink" href="#extra-challenge-using-rsync" title="Permanent link">&para;</a></h3>
 <p><code>scp</code> is a great, ubiquitous tool for one-time transfers but if you find yourself transferring the same set of files to the same location repeatedly, there are better tools to use. Another common tool available on many linux machines is <code>rsync</code>, which is like a beefed-up version of <code>scp</code>. The invocation is similar to <code>scp</code>: you can transfer files and/or folders, but the options are different and when transferring folders, make sure they don't have a trailing slash (<code>/</code>, this means to copy all the files within the folder instead of the folder itself):</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;rsync -Pavz &lt;<span class="nb">source</span> <span class="m">1</span>&gt; &lt;<span class="nb">source</span> <span class="m">2</span>&gt;...&lt;<span class="nb">source</span> N&gt; &lt;remote host&gt;:&lt;remote path&gt; 
-<span class="go">&lt;/strong&gt;</span>
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;rsync -Pavz &lt;source 1&gt; &lt;source 2&gt;...&lt;source N&gt; &lt;remote host&gt;:&lt;remote path&gt; 
+&lt;/strong&gt;
+</code></pre>
 
 <p><code>rsync</code> has many benefits over <code>scp</code> but two of its biggest features are built-in compression (so you don't have to create a tarball) and the ability to only transfer files that have changed. Both of these feature are helpful when you're having connectivity issues so that you don't have to restart the transfer from scratch every time your connection fails.</p>
 <ol>
@@ -155,6 +147,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Once completed, move onto the next exercise: <a href="../part1-ex3-submit-osg/">Running jobs in the OSG</a></p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -182,8 +179,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day4/part2-ex2-file-transfer/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day4/part2-ex2-file-transfer/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>2.2. HTCondor transfers - OSG User School 2017</title>
@@ -74,7 +74,7 @@ arranged on the submit node.  In this exercise we'll use the same <code>blastx</
 modify the submit file and test how much memory and disk space it uses on the execute node.</p>
 <h2 id="start-with-a-test-submit-file">Start with a test submit file<a class="headerlink" href="#start-with-a-test-submit-file" title="Permanent link">&para;</a></h2>
 <p>We've started a submit file for you, below, which you'll add to in the remaining steps.</p>
-<div class="codehilite"><pre><span></span>executable = 
+<pre class="codehilite"><code class="language-file">executable = 
 transfer_input_files = 
 output = test.out
 error = test.error
@@ -84,8 +84,7 @@ request_disk =
 request_cpus = 1
 requirements = (OpSys == &quot;LINUX&quot;)
 queue
-</pre></div>
-
+</code></pre>
 
 <h3 id="implement-file-compression">Implement file compression<a class="headerlink" href="#implement-file-compression" title="Permanent link">&para;</a></h3>
 <p>In our first blast job from yesterday, the database files in the <code>pdbaa</code> directory were all transferred, as is, but we could instead transfer them as a single, compressed file using <code>tar</code>. For a second test job, let's compress our blast database files to send them to the submit node as a single <code>tar.gz</code> file, by following the below steps</p>
@@ -93,24 +92,22 @@ queue
 <li>Change into the <code>pdbaa</code> directory and compress the database files into a single file called <code>pdbaa_files.tar.gz</code> using the <code>tar</code> command. (NOTE: This file will be different from the <code>pdbaa.tar.gz</code> files you downloaded yesterday, because it will only contain the <code>pdbaa</code> files, and not the <code>pdbaa</code> directory, itself.)</li>
 </ol>
 <p>A typical command for creating a tar file is:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tar -cvzf <span class="o">[</span>compressed filename<span class="o">]</span> <span class="o">[</span>list of files<span class="o">]</span>&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tar -cvzf [compressed filename] [list of files]&lt;/strong&gt;
+</code></pre>
 
 <p>Move this file to the <code>thur-blast-data</code> directory.</p>
 <ol>
 <li>Create a wrapper script that will first decompress the <code>pdbaa_files.tar.gz</code> file, and then run blast.</li>
 </ol>
 <p>Because this file will now be our submit file <code>executable</code>, we'll also end up transferring the <code>blastx</code> executable with <code>transfer_input_files</code>. In the <code>thur-blast-data</code> directory, create a new file, called <code>blast_wrapper.sh</code>, with the following contents:</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+<pre class="codehilite"><code class="language-file">#!/bin/bash
 
 tar xvzf pdbaa_files.tar.gz
 
 ./blastx -db pdbaa -query mouse.fa -out mouse.fa.result
 
 rm pdbaa.*
-</pre></div>
-
+</code></pre>
 
 <p>IMPORTANT: The last line removes the resulting database files that came from <code>pdbaa_files.tar.gz</code>, as these files would otherwise be copied back to the submit server as perceived output (because they're new files that HTCondor didn't transfer over as input).</p>
 <h3 id="list-the-executable-and-input-files">List the executable and input files<a class="headerlink" href="#list-the-executable-and-input-files" title="Permanent link">&para;</a></h3>
@@ -131,9 +128,14 @@ rm pdbaa.*
 <h2 id="run-the-test-job">Run the test job<a class="headerlink" href="#run-the-test-job" title="Permanent link">&para;</a></h2>
 <p>Once you have finished editing the submit file, go ahead and submit the job. It should take a few minutes to complete, and then you can check to make sure that no unwanted files (especially the <code>pdbaa</code> database files) were copied back at the end of the job.</p>
 <p>Run a <strong><code>du -sh</code></strong> on the directory with this job's input. How does it compare to the directory from yesterday, and why?</p>
-<p>When you've completed the above, continue with the <a href="../Education.UserSchool17Thu23BlastSplit">next exercise</a>.</p>
+<p>When you've completed the above, continue with the <a href="Education.UserSchool17Thu23BlastSplit">next exercise</a>.</p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -161,8 +163,8 @@ rm pdbaa.*
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

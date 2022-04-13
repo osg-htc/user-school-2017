@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day2/part1-ex1-submit-refresher/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day2/part1-ex1-submit-refresher/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>1.1. Refresher - OSG User School 2017</title>
@@ -61,47 +61,46 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>To find the physical location of the computers your jobs our running on, you will use a method called <em>geolocation</em>. Geolocation uses a registry to match a computer’s network address to an approximate latitude and longitude.</p>
 <h3 id="geolocation-code">Geolocation code<a class="headerlink" href="#geolocation-code" title="Permanent link">&para;</a></h3>
 <p>Below is a Python script that geolocates the machine that it is running on, returning <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system">latitude and longitude coordinates</a>. It is not important to understand how the internals of the script works.</p>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/env python</span>
+<pre class="codehilite"><code class="language-file">#!/bin/env python
 
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">import</span> <span class="nn">urllib2</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">time</span>
+import sys
+import socket
+import urllib2
+import json
+import time
 
-<span class="n">hostnames</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">hostnames</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">getfqdn</span><span class="p">())</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">hostnames</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]))</span>
-        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
-            <span class="k">pass</span>
+hostnames = set()
+if len(sys.argv) == 1:
+    hostnames.add(socket.getfqdn())
+else:
+    for filename in sys.argv[1:]:
+        try:
+            with open(filename, 'r') as f:
+                hostnames.update(set([x.strip() for x in f.readlines()]))
+        except IOError:
+            pass
 
-<span class="n">hostnames</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">host</span> <span class="ow">in</span> <span class="n">hostnames</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">ipaddr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostbyname</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;http://www.freegeoip.net/json/&#39;</span> <span class="o">+</span> <span class="n">ipaddr</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-                <span class="n">json_response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-                <span class="n">lat</span> <span class="o">=</span> <span class="n">json_response</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
-                <span class="n">lon</span> <span class="o">=</span> <span class="n">json_response</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+hostnames.discard('')
+for host in hostnames:
+    try:
+        ipaddr = socket.gethostbyname(host)
+        for i in range(1,4):
+            try:
+                response = urllib2.urlopen('http://www.freegeoip.net/json/' + ipaddr).read()
+                json_response = json.loads(response)
+                lat = json_response['latitude']
+                lon = json_response['longitude']
 
-                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="nb">exit</span><span class="p">(</span><span class="s2">&quot;www.freegeoip.net could not find associated lat/lon coordinates.&quot;</span><span class="p">)</span>
-                <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
-                <span class="k">break</span>
-            <span class="k">except</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">:</span>
-                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="o">**</span><span class="n">i</span><span class="p">)</span>
-                <span class="k">pass</span>
-    <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">gaierror</span><span class="p">:</span>
-        <span class="k">pass</span>
-</pre></div>
-
+                if int(lat) is 0 and int(lon) is 0:
+                    exit(&quot;www.freegeoip.net could not find associated lat/lon coordinates.&quot;)
+                print &quot;%s,%s&quot; % (lat, lon)
+                break
+            except urllib2.HTTPError:
+                time.sleep(3**i)
+                pass
+    except socket.gaierror:
+        pass
+</code></pre>
 
 <p>When called without any arguments, the above script will return the latitude and longitude coordinates of the machine that it is run on.</p>
 <h3 id="geolocating-several-machines">Geolocating several machines<a class="headerlink" href="#geolocating-several-machines" title="Permanent link">&para;</a></h3>
@@ -116,14 +115,12 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ol>
 <h3 id="collating-your-results">Collating your results<a class="headerlink" href="#collating-your-results" title="Permanent link">&para;</a></h3>
 <p>Now that you have your results, it's time to summarize them. Rather than inspecting each output file individually, you can use the <code>cat</code> command to print the results from all of your output files at once. If all of your output files have the format <code>location-#.out</code> (e.g., <code>location-10.out</code>), your command will look something like this:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat location-*.out&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat location-*.out&lt;/strong&gt;
+</code></pre>
 
 <p>The <code>*</code> is a wildcard so the above cat command runs on all files that start with <code>location-</code> and end in <code>.out</code>. Additionally, you can use <code>cat</code> in tandem with the <code>sort</code> and <code>uniq</code> commands to print only the unique results:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat location-*.out <span class="p">|</span> sort <span class="p">|</span> uniq&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat location-*.out | sort | uniq&lt;/strong&gt;
+</code></pre>
 
 <h2 id="mapping-your-results">Mapping your results<a class="headerlink" href="#mapping-your-results" title="Permanent link">&para;</a></h2>
 <p>To visualize the locations of the machines that your jobs ran on, you will be using <a href="http://www.mapcustomizer.com/">http://www.mapcustomizer.com/</a>. Copy and paste the collated results into the text box that pops up when clicking on the 'Bulk Entry' button on the right-hand side. Are the results what you expected?</p>
@@ -131,6 +128,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Once completed, move onto the next exercise: <a href="../part1-ex2-login-scp/">Logging in to the OSG Submit Machine</a></p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -158,8 +160,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

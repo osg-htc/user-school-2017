@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day2/part2-ex1-hardware-diffs/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day2/part2-ex1-hardware-diffs/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>2.1. Hardware in OSG - OSG User School 2017</title>
@@ -63,25 +63,23 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>In this first part, you will create the submit file for both the local and OSG jobs, then submit the local set.</p>
 <h3 id="yet-another-queue-syntax">Yet another queue syntax<a class="headerlink" href="#yet-another-queue-syntax" title="Permanent link">&para;</a></h3>
 <p>Yesterday, you learned about the <code>queue</code> statement and some of the different ways it can be invoked to submit multiple jobs. Similar to the <code>queue from</code> statement to submit jobs based on lines from a specific file, you can use <code>queue in</code> to submit jobs based on a list directly from your submit file:</p>
-<div class="codehilite"><pre><span></span>queue &lt;# of jobs&gt; &lt;variable&gt; in (
+<pre class="codehilite"><code class="language-file">queue &lt;# of jobs&gt; &lt;variable&gt; in (
 &lt;item 1&gt;
 &lt;item 2&gt;
 &lt;item 3&gt;
 ...
 )
-</pre></div>
-
+</code></pre>
 
 <p>For example, to submit 6 jobs that sleep for <code>5</code>, <code>5</code>, <code>10</code>, <code>10</code>, <code>15</code>, and <code>15</code> seconds, you could write a submit file like the following:</p>
-<div class="codehilite"><pre><span></span>executable = /bin/sleep
+<pre class="codehilite"><code class="language-file">executable = /bin/sleep
 
 queue 2 arguments in (
 5
 10
 15
 )
-</pre></div>
-
+</code></pre>
 
 <p>Try submitting this file yourself and checking the jobs that end up in the queue with <code>condor_q -nobatch</code>.</p>
 <h3 id="create-the-submit-files">Create the submit files<a class="headerlink" href="#create-the-submit-files" title="Permanent link">&para;</a></h3>
@@ -96,9 +94,8 @@ queue 2 arguments in (
 </ol>
 <h3 id="monitoring-the-local-jobs">Monitoring the local jobs<a class="headerlink" href="#monitoring-the-local-jobs" title="Permanent link">&para;</a></h3>
 <p>Every few minutes, run <code>condor_q</code> and see how your sleep jobs are doing. To easily see how many jobs of each type you have left, run the following command:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% condor_q &lt;span <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;background-color: #D1CAF2;&quot;</span>&gt;&lt;Cluster ID&gt;&lt;/span&gt; -af RequestMemory <span class="p">|</span> sort -n <span class="p">|</span> uniq -c
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% condor_q &lt;span style=&quot;background-color: #D1CAF2;&quot;&gt;&lt;Cluster ID&gt;&lt;/span&gt; -af RequestMemory | sort -n | uniq -c
+</code></pre>
 
 <p>The numbers in the left column are the number of jobs left of that type and the number on the right is the amount of memory you requested in MB. Consider making a little table like the one below to track progress.</p>
 <table>
@@ -145,7 +142,7 @@ queue 2 arguments in (
 </table>
 <p>In the meantime, between checking on your local jobs, start Part 2 – taking a break every few minutes to record progress on your local jobs.</p>
 <h2 id="part-2-checking-on-the-availability-of-memory-remotely">Part 2: Checking on the availability of memory (remotely)<a class="headerlink" href="#part-2-checking-on-the-availability-of-memory-remotely" title="Permanent link">&para;</a></h2>
-<p>For the second part of the exercise, you will just copy over the directory from part 1 on <code>learn.chtc.wisc.edu</code> to <code>osg-learn.chtc.wisc.edu</code> and resubmit your jobs to the OSG. You should have plenty of experience copying over files with <code>scp</code> and submitting them to the OSG so I won't provide instructions here. If you get stuck at any point in this process, refer to <a href="../Education.UserSchool17Tue12LoginScp">exercise 1.2</a>.</p>
+<p>For the second part of the exercise, you will just copy over the directory from part 1 on <code>learn.chtc.wisc.edu</code> to <code>osg-learn.chtc.wisc.edu</code> and resubmit your jobs to the OSG. You should have plenty of experience copying over files with <code>scp</code> and submitting them to the OSG so I won't provide instructions here. If you get stuck at any point in this process, refer to <a href="Education.UserSchool17Tue12LoginScp">exercise 1.2</a>.</p>
 <h3 id="monitoring-the-remote-jobs">Monitoring the remote jobs<a class="headerlink" href="#monitoring-the-remote-jobs" title="Permanent link">&para;</a></h3>
 <p>As you did in part 1, use <code>condor_q</code> to track how your sleep jobs are doing. You can move onto the next exercise but keep tracking the status of your jobs. After you are done with the rest of the exercises, come back to this exercise, and move onto part 3</p>
 <h2 id="part-3-analyzing-the-results">Part 3: Analyzing the results<a class="headerlink" href="#part-3-analyzing-the-results" title="Permanent link">&para;</a></h2>
@@ -155,6 +152,11 @@ queue 2 arguments in (
 <p>Once completed, move onto the next exercise: <a href="../part2-ex2-software-diffs/">Software Differences in the OSG</a></p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -182,8 +184,8 @@ queue 2 arguments in (
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

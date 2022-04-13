@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day1/part1-ex6-remove/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day1/part1-ex6-remove/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>1.6. Remove jobs - OSG User School 2017</title>
@@ -65,30 +65,33 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Submit a job from an earlier exercise</li>
 <li>Determine the job ID (<code>cluster.process</code>) from the <code>condor_submit</code> output or from <code>condor_q</code></li>
-<li>Remove the job:\ <pre class="screen"><span class="twiki-macro UCL_PROMPT_SHORT"></span> <strong>condor_rm *job_id</strong>*</pre>\ <p>Use the full job ID this time, e.g., <code>5759.0</code>.</p></li>
+<li>Remove the job:\ <pre class="screen"><span class="twiki-macro UCL_PROMPT_SHORT"></span> <strong>condor_rm <em>job_id</em></strong></pre>\ <p>Use the full job ID this time, e.g., <code>5759.0</code>.</p></li>
 <li>Did the job leave the queue immediately? If not, about how long did it take?</li>
 </ol>
 <p>So far, we have created job clusters that contain only one job process (the <code>.0</code> part of the job ID). That will change soon, so it is good to know how to remove a specific job ID. However, it is possible to remove all jobs that are part of a cluster at once. Simply omit the job process (the <code>.0</code> part of the job ID) in the <code>condor_rm</code> command:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm &lt;em&gt;cluster&lt;/em&gt;&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm &lt;em&gt;cluster&lt;/em&gt;&lt;/strong&gt;
+</code></pre>
 
 <p>Finally, you can include many job clusters and full job IDs in a single <code>condor_rm</code> command. For example:</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm <span class="m">5768</span> <span class="m">5769</span> <span class="m">5770</span>.0 <span class="m">5771</span>.2&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm 5768 5769 5770.0 5771.2&lt;/strong&gt;
+</code></pre>
 
 <h2 id="removing-all-of-your-jobs">Removing All of Your Jobs<a class="headerlink" href="#removing-all-of-your-jobs" title="Permanent link">&para;</a></h2>
 <p>If you really want to remove all of your jobs at once, you can do that.</p>
 <ol>
 <li>Quickly submit several jobs from past exercises</li>
 <li>View the jobs in the queue with <code>condor_q</code></li>
-<li>Remove them all at once\ <pre class="screen"><span class="twiki-macro UCL_PROMPT_SHORT"></span> <strong>condor_rm *userid</strong>*</pre>\ <p>Use your login user ID for <code>userid</code>.</p></li>
+<li>Remove them all at once\ <pre class="screen"><span class="twiki-macro UCL_PROMPT_SHORT"></span> <strong>condor_rm <em>userid</em></strong></pre>\ <p>Use your login user ID for <code>userid</code>.</p></li>
 <li>Use <code>condor_q</code> to track progress</li>
 </ol>
 <p>In case you are wondering, you can remove only your own jobs. HTCondor administrators can remove anyone’s jobs, so be nice to them.</p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -116,8 +119,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

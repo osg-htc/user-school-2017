@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day4/part1-ex2-connect-quickstart/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day4/part1-ex2-connect-quickstart/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>1.2. Quickstart - OSG User School 2017</title>
@@ -66,60 +66,56 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <h2 id="get-the-example-files-for-the-tutorial-osg-connect-quickstart-via-tutorial-command">Get the example files for the tutorial "OSG Connect Quickstart" via <code>tutorial</code> command<a class="headerlink" href="#get-the-example-files-for-the-tutorial-osg-connect-quickstart-via-tutorial-command" title="Permanent link">&para;</a></h2>
 <p>We will get the example files using the <code>tutorial</code> command.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tutorial quickstart&lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tutorial quickstart&lt;/strong&gt;
+</code></pre>
 
 <p>This creates a directory <code>tutorial-quickstart</code>. Go inside the directory and see what is inside.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cd tutorial-quickstart&lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;ls -F &lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cd tutorial-quickstart&lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;ls -F &lt;/strong&gt;
+</code></pre>
 
 <p>You will see the following contents:</p>
-<div class="codehilite"><pre><span></span>Images/  osg-template-job.submit  short.sh  tutorial02.submit log/     README.md   tutorial01.submit  tutorial03.submit
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">Images/  osg-template-job.submit  short.sh  tutorial02.submit log/     README.md   tutorial01.submit  tutorial03.submit
+</code></pre>
 
 <p>We will focus our attention on <code>short.sh</code> (execution file) and <code>tutorial01.submit</code>. We will not worry about other files in this exercise. Feel free to take a look at other files if you are interested.</p>
 <h2 id="job-execution-file">Job Execution File<a class="headerlink" href="#job-execution-file" title="Permanent link">&para;</a></h2>
 <p>Take a look at the job execution file <code>short.sh</code>.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat short.sh &lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat short.sh &lt;/strong&gt;
+</code></pre>
 
 <p>This is a shell script, quite ordinary . Run this shell script locally to see what it does.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;chmod + short.sh &lt;/strong&gt;
-<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;./short.sh &lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;chmod + short.sh &lt;/strong&gt;
+%UCL_PROMPT_SHORT% &lt;strong&gt;./short.sh &lt;/strong&gt;
+</code></pre>
 
 <h2 id="submitting-the-job-on-the-osg">Submitting the job on the OSG<a class="headerlink" href="#submitting-the-job-on-the-osg" title="Permanent link">&para;</a></h2>
 <p>The job description file <code>tutorial01.submit</code> executes the shell script <code>short.sh</code> as a vanilla universe job. Take a look at the job description file.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat tutorial01.submit &lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat tutorial01.submit &lt;/strong&gt;
+</code></pre>
 
 <p>Now run this job on the OSG.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit tutorial01.submit &lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit tutorial01.submit &lt;/strong&gt;
+</code></pre>
 
 <p>Once your job has finished, you can look at the files that HTCondor has returned to the working directory. If everything was successful, it should have returned:</p>
-<div class="codehilite"><pre><span></span>job.output (An output file for each job&#39;s output)
-job.error: (An error file for each job&#39;s errors)
-job.log: (A log file for each job&#39;s log)
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">job.output (An output file for each job's output)
+job.error: (An error file for each job's errors)
+job.log: (A log file for each job's log)
+</code></pre>
 
 <p>Read the output file.</p>
-<div class="codehilite"><pre><span></span><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat job.output &lt;/strong&gt;
-</pre></div>
-
+<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat job.output &lt;/strong&gt;
+</code></pre>
 
 <p>Observe the difference between the outputs from running the job on the OSG and running locally. (Hint: Check the username, id, work directory etc.)</p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -147,8 +143,8 @@ job.log: (A log file for each job&#39;s log)
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

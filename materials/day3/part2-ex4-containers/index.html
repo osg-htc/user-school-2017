@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day3/part2-ex4-containers/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day3/part2-ex4-containers/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>2.4. (opt) Containers - OSG User School 2017</title>
@@ -67,20 +67,18 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>Make a copy of your submit file from the <a href="../part2-ex3-python-install/">previous exercise</a>.</li>
 <li>Add the following three lines to the submit file or modify existing lines to match the lines below: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>universe = docker
+<pre class="codehilite"><code class="language-file">universe = docker
 docker_image = python
 requirements = (OpSysMajorVer == 7)
-</pre></div>
-
+</code></pre>
 
 <p>\ Here we are requesting HTCondor's Docker universe and using a pre-built python image that, by default, will be pulled from a public website of Docker images called DockerHub. \ The requirements line will ensure that we run on computers whose operating system can support Docker.</p>
 <ol>
 <li>Adjust the executable and arguments lines. The executable can now be the Python script itself, with the appropriate arguments: \</li>
 </ol>
-<div class="codehilite"><pre><span></span>executable = fib.py
+<pre class="codehilite"><code class="language-file">executable = fib.py
 arguments = 5
-</pre></div>
-
+</code></pre>
 
 <ol>
 <li>Finally, we no longer need to transfer a Python tarball (whether source code or pre-built) or our Python script. You can remove both from the <code>transfer_input_files</code> \</li>
@@ -90,14 +88,18 @@ arguments = 5
 <ol>
 <li>Open the Python script and add the following line at the top: \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
-</pre></div>
-
+<pre class="codehilite"><code class="language-file">#!/usr/bin/env python
+</code></pre>
 
 <p>\ This will ensure that the script uses the version of Python that comes in the Docker container.</p>
 <p>Once these steps are done, submit the job.</p>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -125,8 +127,8 @@ arguments = 5
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>

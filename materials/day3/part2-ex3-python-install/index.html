@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://opensciencegrid.github.io/user-school-2017/materials/day3/part2-ex3-python-install/">
+    <link rel="canonical" href="https://osg-htc.org/user-school-2017/materials/day3/part2-ex3-python-install/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>2.3. Installing Python - OSG User School 2017</title>
@@ -67,19 +67,18 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>Based on the previous exercise, what are the steps we need to install Python? What file can we use for reference?</li>
 <li>We put our installation steps from the previous exercise into a file called <code>python_install.txt</code>. Based on this, put the installation steps into a script called <code>run_py.sh</code> 2. Check your script against the file below \</li>
 </ol>
-<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+<pre class="codehilite"><code class="language-file">#!/bin/bash
 
-<span class="nb">export</span> PATH
+export PATH
 
 mkdir python
 tar xzf Python-3.6.1.tgz
-<span class="nb">cd</span> Python-3.6.1
-./configure --prefix<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/../python
+cd Python-3.6.1
+./configure --prefix=$(pwd)/../python
 make
 make install
-<span class="nb">cd</span> ..
-</pre></div>
-
+cd ..
+</code></pre>
 
 <p>\</p>
 <ol>
@@ -98,6 +97,11 @@ make install
 </ol>
 
   <br>
+    
+
+    
+    
+      
     
 
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
@@ -125,8 +129,8 @@ make install
     <br>
 </div>
 
-<footer class="col-md-12 wm-page-content">
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
 </body>
