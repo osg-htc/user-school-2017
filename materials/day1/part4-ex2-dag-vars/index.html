@@ -59,24 +59,24 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Yes, we can!</p>
 <h2 id="declare-your-variables">Declare Your Variables<a class="headerlink" href="#declare-your-variables" title="Permanent link">&para;</a></h2>
 <p>First you need to declare your variables in your submit file. Make one submit file for all of your goatbrot jobs. Here's what it looks like. Call it goatbrot.sub:</p>
-<pre class="codehilite"><code class="language-console">executable              = /usr/local/bin/goatbrot
-arguments               = -i 100000 -c $(CENTERX),$(CENTERY) -w 1.5 -s 500,500 -o tile_$(TILEY)_$(TILEX).ppm
-log                     = goatbrot.log
-output                  = goatbrot.out.$(TILEY).$(TILEX)
-error                   = goatbrot.err.$(TILEY).$(TILEX)
-request_memory = 1G
-request_disk       = 1G
-request_cpus      = 1
-queue
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="go">executable              = /usr/local/bin/goatbrot</span>
+<span class="go">arguments               = -i 100000 -c $(CENTERX),$(CENTERY) -w 1.5 -s 500,500 -o tile_$(TILEY)_$(TILEX).ppm</span>
+<span class="go">log                     = goatbrot.log</span>
+<span class="go">output                  = goatbrot.out.$(TILEY).$(TILEX)</span>
+<span class="go">error                   = goatbrot.err.$(TILEY).$(TILEX)</span>
+<span class="go">request_memory = 1G</span>
+<span class="go">request_disk       = 1G</span>
+<span class="go">request_cpus      = 1</span>
+<span class="go">queue</span>
+</code></pre></div>
 
 <p>Then you need to change your DAG to use VARS for variable substitution. Here is what one of the jobs would look like:</p>
-<pre class="codehilite"><code class="language-console">JOB g1 goatbrot.sub
-VARS g1 CENTERX=&quot;-0.75&quot;
-VARS g1 CENTERY=&quot;0.75&quot;
-VARS g1 TILEX=&quot;0&quot;
-VARS g1 TILEY=&quot;0&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="go">JOB g1 goatbrot.sub</span>
+<span class="go">VARS g1 CENTERX=&quot;-0.75&quot;</span>
+<span class="go">VARS g1 CENTERY=&quot;0.75&quot;</span>
+<span class="go">VARS g1 TILEX=&quot;0&quot;</span>
+<span class="go">VARS g1 TILEY=&quot;0&quot;</span>
+</code></pre></div>
 
 <p>Edit your DAG similarly for all of your goatbrot jobs. If you need help, check the Condor manual for <a href="http://www.cs.wisc.edu/condor/manual/current/2_10DAGMan_Applications.html">for a description of how to use VARS</a>. What happens?</p>
 

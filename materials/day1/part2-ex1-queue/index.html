@@ -64,30 +64,30 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>The main part of this exercise should take just a few minutes, but if you have more time later, come back and work on the extension ideas at the end to become a <code>condor_q</code> expert!</p>
 <h2 id="selecting-jobs">Selecting Jobs<a class="headerlink" href="#selecting-jobs" title="Permanent link">&para;</a></h2>
 <p>The <code>condor_q</code> program has many options for selecting which jobs are listed. You have already seen that the default mode (as of version 8.5) is to show only your jobs in "batch" mode:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q&lt;/strong&gt;
+</code></pre></div>
 
 <p>You've seen that you can view all jobs (all users) in the submit node's queue by using the <code>-all</code> argument:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -all&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -all&lt;/strong&gt;
+</code></pre></div>
 
 <p>And you've seen that you can view more details about queued jobs, with each separate job on a single line using the <code>-nobatch</code> option:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -nobatch&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -all -nobatch&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -nobatch&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -all -nobatch&lt;/strong&gt;
+</code></pre></div>
 
 <p>Did you know you can also name one or more user IDs on the command line, in which case jobs for all of the named users are listed at once?</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q &lt;em&gt;&lt;i&gt;username1 username2 username3&lt;/i&gt;&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q &lt;em&gt;&lt;i&gt;username1 username2 username3&lt;/i&gt;&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>There are two other, simple selection criteria that you can use. To list just the jobs associated with a single cluster number:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q &lt;em&gt;&lt;i&gt;CLUSTER&lt;/i&gt;&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q &lt;em&gt;&lt;i&gt;CLUSTER&lt;/i&gt;&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>For example, if you want to see the jobs in cluster 5678 (i.e., <code>5678.0</code>, <code>5678.1</code>, etc.), you use <code>condor_q 5678</code>.</p>
 <p>To list a specific job (i.e., cluster.process, as in 5678.0):</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q &lt;em&gt;&lt;i&gt;JOB_ID&lt;/i&gt;&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q &lt;em&gt;&lt;i&gt;JOB_ID&lt;/i&gt;&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>For example, to see job ID 5678.1, you use <code>condor_q 5678.1</code>.</p>
 <p><strong>Note:</strong> You can name more than one cluster, job ID, or combination thereof on the command line, in which case jobs for <strong>all</strong> of the named clusters and/or job IDs are listed.</p>
@@ -108,11 +108,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="viewing-a-job-classad">Viewing a Job ClassAd<a class="headerlink" href="#viewing-a-job-classad" title="Permanent link">&para;</a></h2>
 <p>You may have wondered why it is useful to be able to list a single job ID using <code>condor_q</code>. By itself, it may not be that useful. But, in combination with another option, it is very useful!</p>
 <p>If you add the <code>-long</code> option to <code>condor_q</code> (or its short form, <code>-l</code>), it will show the complete ClassAd for each selected job, instead of the one-line summary that you have seen so far. Because job ClassAds may have 80–90 attributes (or more), it probably makes the most sense to show the ClassAd for a single job at a time. And you know how to show just one job! Here is what the command looks like:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -long &lt;em&gt;job-id&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -long &lt;em&gt;job-id&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>The output from this command is long and complex. Most of the attributes that HTCondor adds to a job are arcane and uninteresting for us now. But here are some examples of common, interesting attributes taken directly from <code>condor_q</code> output (except with some line breaks added to the <code>Requirements</code> attribute):</p>
-<pre class="codehilite"><code class="language-file">MyType = &quot;Job&quot;
+<div class="codehilite"><pre><span></span><code>MyType = &quot;Job&quot;
 Err = &quot;sleep.err&quot;
 UserLog = &quot;/home/cat/1-monday-2.1-queue/sleep.log&quot;
 JobUniverse = 5
@@ -129,7 +129,7 @@ CondorVersion = &quot;$CondorVersion: 8.5.5 May 03 2016 BuildID: 366162 $&quot;
 Out = &quot;sleep.out&quot;
 Cmd = &quot;/bin/sleep&quot;
 Arguments = &quot;120&quot;
-</code></pre>
+</code></pre></div>
 
 <p><strong>Note:</strong> Attributes are listed in no particular order and may change from time to time. Do not assume anything about the order of attributes in <code>condor_q</code> output.</p>
 <p>See what you can find in a job ClassAd from your own job.</p>
@@ -154,12 +154,12 @@ Arguments = &quot;120&quot;
 <h2 id="why-is-my-job-not-running">Why Is My Job Not Running?<a class="headerlink" href="#why-is-my-job-not-running" title="Permanent link">&para;</a></h2>
 <p>Sometimes, you submit a job and it just sits in the queue in Idle state, never running. It can be difficult to figure out why a job never matches and runs. Fortunately, HTCondor can give you some help.</p>
 <p>To ask HTCondor why you job is not running, add the <code>-better-analyze</code> option to <code>condor_q</code> for the specific job. For example, for job ID 2423.0, the command is:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -better-analyze &lt;em&gt;2423.0&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -better-analyze &lt;em&gt;2423.0&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>Of course, replace the job ID with your own.</p>
 <p>Let’s submit a job that will never run and see what happens. Here is the submit file to use:</p>
-<pre class="codehilite"><code class="language-file">universe = vanilla
+<div class="codehilite"><pre><span></span><code>universe = vanilla
 executable = /bin/hostname
 output = norun.out
 error = norun.err
@@ -168,7 +168,7 @@ should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
 request_memory = 2TB
 queue
-</code></pre>
+</code></pre></div>
 
 <p>(Do you see what I did?)</p>
 <ol>
@@ -176,14 +176,14 @@ queue
 <li>Run <code>condor_q -analyze</code> on the job ID</li>
 </ol>
 <p>There is a lot of output, but a few items are worth highlighting. Here is a sample from my own job (with many lines left out):</p>
-<pre class="codehilite"><code class="language-file">-- Submitter: learn.chtc.wisc.edu : ....
+<div class="codehilite"><pre><span></span><code>-- Submitter: learn.chtc.wisc.edu : ....
 ...
 ---
-2423.000:  Run analysis summary.  &lt;em&gt;Of 12388 machines,&lt;/em&gt;
-&lt;em&gt;   12388 are rejected by your job's requirements &lt;/em&gt;
+2423.000:  Run analysis summary.  <span class="nt">&lt;em&gt;</span>Of 12388 machines,<span class="nt">&lt;/em&gt;</span>
+<span class="nt">&lt;em&gt;</span>   12388 are rejected by your job&#39;s requirements <span class="nt">&lt;/em&gt;</span>
 ...
 WARNING:  Be advised:
-&lt;em&gt;   No resources matched request's constraints&lt;/em&gt;
+<span class="nt">&lt;em&gt;</span>   No resources matched request&#39;s constraints<span class="nt">&lt;/em&gt;</span>
 
 The Requirements expression for your job is:
 ...
@@ -192,14 +192,14 @@ Suggestions:
 
     Condition                         Machines Matched    Suggestion
     ---------                         ----------------    ----------
-&lt;em&gt;1   ( TARGET.Memory &gt;= 2097152 )      0                   MODIFY TO 1000064&lt;/em&gt;
+<span class="nt">&lt;em&gt;</span>1   ( TARGET.Memory &gt;= 2097152 )      0                   MODIFY TO 1000064<span class="nt">&lt;/em&gt;</span>
 2   ( ... )
                                       12145                
 3   ( TARGET.Arch == &quot;X86_64&quot; )       12388                
 4   ( TARGET.OpSys == &quot;LINUX&quot; )       12386                
 5   ( TARGET.Disk &gt;= 20 )             12387                
 6   ( TARGET.HasFileTransfer )        12388                
-</code></pre>
+</code></pre></div>
 
 <p>Toward the top, <code>condor_q</code> said that it considered 12388 “machines” (really, slots) and <strong>all</strong> 12388 of them were rejected by <strong>my job’s requirements</strong>. In other words, I am asking for something that is not available. But what?</p>
 <p>The real clue comes from the breakdown of the Requirements expression, at the end of the output. Note the highlighted line: My job asked for <strong>2 terabytes</strong> of memory (2,097,152 MB) and <strong>no</strong> machines matched that part of the expression. Well, of course! 2 TB is a lot of memory on today’s machines. And finally, note the suggestion: If I reduce my memory request to 1,000,064 MB (about 1 TB), there will be at least one slot in the pool that will match that expression.</p>
@@ -207,11 +207,11 @@ Suggestions:
 <h2 id="automatic-formatting-output-optional">Automatic Formatting Output (Optional)<a class="headerlink" href="#automatic-formatting-output-optional" title="Permanent link">&para;</a></h2>
 <p>There is a way to format output from <code>condor_q</code> with the <code>-autoformat</code> or <code>-af</code> option. In this case, HTCondor decides for you how to format the data you ask for from job ClassAd(s). (To tell HTCondor how to format this information, yourself, you could use the <code>-format</code> option, which we're not covering.)</p>
 <p>To use autoformatting, use the <code>-af</code> option followed by the attribute name, for each attribute that you want to output:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -af Owner -af ClusterId -af Cmd&lt;/strong&gt;
-moate 2418 /share/test.sh
-cat 2421 /bin/sleep
-cat 2422 /bin/sleep
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_q -af Owner -af ClusterId -af Cmd&lt;/strong&gt;
+<span class="go">moate 2418 /share/test.sh</span>
+<span class="go">cat 2421 /bin/sleep</span>
+<span class="go">cat 2422 /bin/sleep</span>
+</code></pre></div>
 
 <p>Note that the <code>-af</code> option saves some typing but provides less control over the formatting of the output.</p>
 <p><strong>Bonus Question</strong>: If you wanted to print out the <code>Requirements</code> expression of a job, how would you do that with <code>-af</code>? Is the output what you expected? (HINT: for ClassAd attributes like "Requirements" that are long expressions, instead of simple values, you can use <code>-af:r</code> to view the expressions, instead of what it's current evaluation.)</p>

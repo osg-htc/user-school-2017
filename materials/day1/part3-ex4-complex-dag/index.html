@@ -64,7 +64,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>We'll run our <code>goatbrot</code> example. If you didn't read about it yet, <a href="UserSchool16Mon32Mandelbrot">please do so now</a>. We are going to make a DAG with four simultaneous jobs (<code>goatbrot</code>) and one final node to stitch them together (<code>montage</code>). This means we have five jobs. We're going to run <code>goatbrot</code> with more iterations (100,000) so each job will take longer to run.</p>
 <p>You can create your five jobs. The goatbrot jobs are very similar to each other, but they have slightly different parameters and output files.</p>
 <h3 id="goatbrot1sub">goatbrot1.sub<a class="headerlink" href="#goatbrot1sub" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-file">executable              = /usr/local/bin/goatbrot
+<div class="codehilite"><pre><span></span><code>executable              = /usr/local/bin/goatbrot
 arguments               = -i 100000 -c -0.75,0.75 -w 1.5 -s 500,500 -o tile_0_0.ppm
 log                     = goatbrot.log
 output                  = goatbrot.out.0.0
@@ -73,10 +73,10 @@ request_memory = 1GB
 request_disk       = 1GB
 request_cpus      = 1
 queue
-</code></pre>
+</code></pre></div>
 
 <h3 id="goatbrot2sub">goatbrot2.sub<a class="headerlink" href="#goatbrot2sub" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-file">executable              = /usr/local/bin/goatbrot
+<div class="codehilite"><pre><span></span><code>executable              = /usr/local/bin/goatbrot
 arguments               = -i 100000 -c 0.75,0.75 -w 1.5 -s 500,500 -o tile_0_1.ppm
 log                     = goatbrot.log
 output                  = goatbrot.out.0.1
@@ -85,10 +85,10 @@ request_memory = 1GB
 request_disk       = 1GB
 request_cpus      = 1
 queue
-</code></pre>
+</code></pre></div>
 
 <h3 id="goatbrot3sub">goatbrot3.sub<a class="headerlink" href="#goatbrot3sub" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-file">executable              = /usr/local/bin/goatbrot
+<div class="codehilite"><pre><span></span><code>executable              = /usr/local/bin/goatbrot
 arguments               = -i 100000 -c -0.75,-0.75 -w 1.5 -s 500,500 -o tile_1_0.ppm
 log                     = goatbrot.log
 output                  = goatbrot.out.1.0
@@ -97,10 +97,10 @@ request_memory = 1GB
 request_disk       = 1GB
 request_cpus      = 1
 queue
-</code></pre>
+</code></pre></div>
 
 <h3 id="goatbrot4sub">goatbrot4.sub<a class="headerlink" href="#goatbrot4sub" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-file">executable              = /usr/local/bin/goatbrot
+<div class="codehilite"><pre><span></span><code>executable              = /usr/local/bin/goatbrot
 arguments               = -i 100000 -c 0.75,-0.75 -w 1.5 -s 500,500 -o tile_1_1.ppm
 log                     = goatbrot.log
 output                  = goatbrot.out.1.1
@@ -109,11 +109,11 @@ request_memory = 1GB
 request_disk       = 1GB
 request_cpus      = 1
 queue
-</code></pre>
+</code></pre></div>
 
 <h3 id="montagesub">montage.sub<a class="headerlink" href="#montagesub" title="Permanent link">&para;</a></h3>
 <p>You should notice that the <code>transfer_input_files</code> statement refers to the files created by the other jobs.</p>
-<pre class="codehilite"><code class="language-file">executable              = /usr/bin/montage
+<div class="codehilite"><pre><span></span><code>executable              = /usr/bin/montage
 arguments               = tile_0_0.ppm tile_0_1.ppm tile_1_0.ppm tile_1_1.ppm -mode Concatenate -tile 2x2 mandel-from-dag.jpg
 transfer_input_files    = tile_0_0.ppm,tile_0_1.ppm,tile_1_0.ppm,tile_1_1.ppm
 output                  = montage.out
@@ -123,34 +123,34 @@ request_memory = 1GB
 request_disk       = 1GB
 request_cpus      = 1
 queue
-</code></pre>
+</code></pre></div>
 
 <h2 id="make-your-dag">Make your DAG<a class="headerlink" href="#make-your-dag" title="Permanent link">&para;</a></h2>
 <p>In a file called <code>goatbrot.dag</code>, you have your DAG specification:</p>
-<pre class="codehilite"><code class="language-file">JOB g1 goatbrot1.sub
-JOB g2 goatbrot2.sub
-JOB g3 goatbrot3.sub
-JOB g4 goatbrot4.sub
-JOB montage montage.sub
-PARENT g1 g2 g3 g4 CHILD montage
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="kd">JOB</span><span class="o"> </span><span class="n">g1</span><span class="w"> </span><span class="n">goatbrot1</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">g2</span><span class="w"> </span><span class="n">goatbrot2</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">g3</span><span class="w"> </span><span class="n">goatbrot3</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">g4</span><span class="w"> </span><span class="n">goatbrot4</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="kd">JOB</span><span class="o"> </span><span class="n">montage</span><span class="w"> </span><span class="n">montage</span><span class="o">.</span><span class="n">sub</span><span class="w"></span>
+<span class="n">PARENT</span><span class="w"> </span><span class="n">g1</span><span class="w"> </span><span class="n">g2</span><span class="w"> </span><span class="n">g3</span><span class="w"> </span><span class="n">g4</span><span class="w"> </span><span class="n">CHILD</span><span class="w"> </span><span class="n">montage</span><span class="w"></span>
+</code></pre></div>
 
 <p>Ask yourself: do you know how we ensure that all the <code>goatbrot</code> commands can run simultaneously and all of them will complete before we run the montage job?</p>
 <h2 id="running-the-dag">Running the DAG<a class="headerlink" href="#running-the-dag" title="Permanent link">&para;</a></h2>
 <p>Submit your DAG:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit_dag goatbrot.dag&lt;/strong&gt;
------------------------------------------------------------------------
-File for submitting this DAG to Condor           : goatbrot.dag.condor.sub
-Log of DAGMan debugging messages                 : goatbrot.dag.dagman.out
-Log of Condor library output                     : goatbrot.dag.lib.out
-Log of Condor library error messages             : goatbrot.dag.lib.err
-Log of the life of condor_dagman itself          : goatbrot.dag.dagman.log
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit_dag goatbrot.dag&lt;/strong&gt;
+<span class="go">-----------------------------------------------------------------------</span>
+<span class="go">File for submitting this DAG to Condor           : goatbrot.dag.condor.sub</span>
+<span class="go">Log of DAGMan debugging messages                 : goatbrot.dag.dagman.out</span>
+<span class="go">Log of Condor library output                     : goatbrot.dag.lib.out</span>
+<span class="go">Log of Condor library error messages             : goatbrot.dag.lib.err</span>
+<span class="go">Log of the life of condor_dagman itself          : goatbrot.dag.dagman.log</span>
 
-Submitting job(s).
-1 job(s) submitted to cluster 71.
+<span class="go">Submitting job(s).</span>
+<span class="go">1 job(s) submitted to cluster 71.</span>
 
------------------------------------------------------------------------
-</code></pre>
+<span class="go">-----------------------------------------------------------------------</span>
+</code></pre></div>
 
 <h2 id="watch-your-dag">Watch Your DAG<a class="headerlink" href="#watch-your-dag" title="Permanent link">&para;</a></h2>
 <p>Let’s follow the progress of the whole DAG:</p>

@@ -69,12 +69,12 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>Did the job leave the queue immediately? If not, about how long did it take?</li>
 </ol>
 <p>So far, we have created job clusters that contain only one job process (the <code>.0</code> part of the job ID). That will change soon, so it is good to know how to remove a specific job ID. However, it is possible to remove all jobs that are part of a cluster at once. Simply omit the job process (the <code>.0</code> part of the job ID) in the <code>condor_rm</code> command:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm &lt;em&gt;cluster&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm &lt;em&gt;cluster&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>Finally, you can include many job clusters and full job IDs in a single <code>condor_rm</code> command. For example:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm 5768 5769 5770.0 5771.2&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_rm <span class="m">5768</span> <span class="m">5769</span> <span class="m">5770</span>.0 <span class="m">5771</span>.2&lt;/strong&gt;
+</code></pre></div>
 
 <h2 id="removing-all-of-your-jobs">Removing All of Your Jobs<a class="headerlink" href="#removing-all-of-your-jobs" title="Permanent link">&para;</a></h2>
 <p>If you really want to remove all of your jobs at once, you can do that.</p>

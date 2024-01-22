@@ -67,10 +67,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p><code>anagram.dag</code> is the main DAG that you will be submitting and although it may look like a simple, linear DAG, it's actually more like the DAG from Monday's <a href="../../day1/part3-ex3-simple-dag/">exercise 4.2</a> because of the <a href="http://research.cs.wisc.edu/htcondor/manual/v8.4/2_10DAGMan_Applications.html#SECTION003108900000000000000">SUBDAG</a> within it! There is only one <code>.dag</code> file in the extracted folder, so where does the SUBDAG come from?</p>
 <h2 id="part-2-finding-anagramic-squares">Part 2: Finding anagramic squares<a class="headerlink" href="#part-2-finding-anagramic-squares" title="Permanent link">&para;</a></h2>
 <p>The contents of the tarball that you've extracted contain a DAG that is designed to solve <a href="https://projecteuler.net/problem=98">Project Euler problem 98</a>:</p>
-<pre class="codehilite"><code class="language-file">By replacing each of the letters in the word CARE with 1, 2, 9, and 6 respectively,
-we form a square number: 1296 = 36&lt;sup&gt;2&lt;/sup&gt;. What is remarkable is that, by using the
+<div class="codehilite"><pre><span></span><code>By replacing each of the letters in the word CARE with 1, 2, 9, and 6 respectively,
+we form a square number: 1296 = 36<span class="nt">&lt;sup&gt;</span>2<span class="nt">&lt;/sup&gt;</span>. What is remarkable is that, by using the
 same digital substitutions, the anagram, RACE, also forms a square number:
-9216 = 96&lt;sup&gt;2&lt;/sup&gt;. We shall call CARE (and RACE) a square anagram word pair and specify
+9216 = 96<span class="nt">&lt;sup&gt;</span>2<span class="nt">&lt;/sup&gt;</span>. We shall call CARE (and RACE) a square anagram word pair and specify
 further that leading zeroes are not permitted, neither may a different letter have
 the same digital value as another letter.
 
@@ -81,17 +81,17 @@ to be an anagram of itself).
 What is the largest square number formed by any member of such a pair?
 
 NOTE: All anagrams formed must be contained in the given text file.
-</code></pre>
+</code></pre></div>
 
 <p>Unfortunately, there are many issues with the DAG and its submit files that you will have to work through before you can you can obtain the solution to the problem (the code itself should be bug-free)! Submit the DAG:</p>
-<pre class="codehilite"><code class="language-console"> %UCL_PROMPT_SHORT% condor_submit_dag anagrams.dag
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp"> %</span>UCL_PROMPT_SHORT% condor_submit_dag anagrams.dag
+</code></pre></div>
 
 <p>Then use your newfound HTCondor troubleshooting knowledge to find the answer to the Euler problem that ends up in <code>result.out</code> when you've successfully completed this exercise.</p>
 <h3 id="answer-key">Answer key<a class="headerlink" href="#answer-key" title="Permanent link">&para;</a></h3>
 <p>There is also a working solution on our web server that can be retrieved with</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/tues_31_answer.tar.gz&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/tues_31_answer.tar.gz&lt;/strong&gt;
+</code></pre></div>
 
 <p>It contains comments labeled <code>SOLUTION</code> that you can consult in case you get stuck. Like any answer key, it's mainly useful as a verification tool, so try to only use it as a last resort or for additional illumination.</p>
 

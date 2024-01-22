@@ -71,15 +71,15 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>Before loading the <code>gromacs</code> module, check your "PATH" variable with:</p>
 </li>
 </ol>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;echo $PATH&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;echo <span class="nv">$PATH</span>&lt;/strong&gt;
+</code></pre></div>
 
 <ol>
 <li>Now load the <code>gromacs</code> module, which will give you the default version, and check your list of modules:</li>
 </ol>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;module load gromacs&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;module list&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;module load gromacs&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;module list&lt;/strong&gt;
+</code></pre></div>
 
 <ol>
 <li>
@@ -89,45 +89,45 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>When you're done, unload the module and check that you no longer have the module loaded:</p>
 </li>
 </ol>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;module unload gromacs&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;module list&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;echo $PATH&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;module unload gromacs&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;module list&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;echo <span class="nv">$PATH</span>&lt;/strong&gt;
+</code></pre></div>
 
 <h2 id="submit-a-job-that-uses-gromacs-from-oasis">Submit a job that uses GROMACS from OASIS<a class="headerlink" href="#submit-a-job-that-uses-gromacs-from-oasis" title="Permanent link">&para;</a></h2>
 <p>Now let us see how to do a job submission on the OSG that uses GROMACS on OASIS (you don't have to transfer GROMACS source or the binary along with the job).</p>
 <p>We will get the example files using the <code>tutorial</code> command.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;tutorial gromacs&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;tutorial gromacs&lt;/strong&gt;
+</code></pre></div>
 
 <p>This creates a directory <code>tutorial-quickstart</code>. Go inside the directory and see what is inside.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cd tutorial-gromacs&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;ls -F &lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cd tutorial-gromacs&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;ls -F &lt;/strong&gt;
+</code></pre></div>
 
 <p>You will see the following files:</p>
-<pre class="codehilite"><code class="language-file">1cta_nvt.tpr  Figs/  gromacs_job.sh  gromacs_job.submit  README.md
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="mf">1</span><span class="n">cta_nvt</span><span class="mf">.</span><span class="n">tpr</span><span class="w">  </span><span class="n">Figs</span><span class="o">/</span><span class="w">  </span><span class="n">gromacs_job</span><span class="mf">.</span><span class="n">sh</span><span class="w">  </span><span class="n">gromacs_job</span><span class="mf">.</span><span class="n">submit</span><span class="w">  </span><span class="kr">READ</span><span class="n">ME</span><span class="mf">.</span><span class="n">md</span><span class="w"></span>
+</code></pre></div>
 
 <p>Take a look at the job description file</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat gromacs_job.submit &lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat gromacs_job.submit &lt;/strong&gt;
+</code></pre></div>
 
 <p>The modules are loaded in the wrapper script before executing the actual job. In this example, gromacs is loaded before running the actual simulation.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat gromacs_job.sh&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat gromacs_job.sh&lt;/strong&gt;
+</code></pre></div>
 
 <p>The following requirement is added to find a machine that has the modules:</p>
-<pre class="codehilite"><code class="language-console">requirements = HAS_MODULES == True
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="go">requirements = HAS_MODULES == True</span>
+</code></pre></div>
 
 <p>Check the job description file.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat gromacs_job.submit &lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat gromacs_job.submit &lt;/strong&gt;
+</code></pre></div>
 
 <p>Let's submit the job.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit gromacs_job.submit &lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit gromacs_job.submit &lt;/strong&gt;
+</code></pre></div>
 
 <p>After the simulation is completed, you will see the output files (including gro, cpt and trr files) from GROMACS in your work directory.</p>
 

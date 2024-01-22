@@ -70,11 +70,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>Create a directory for this exercise and <code>cd</code> into it . 2. Copy the following code into a file called <code>matrix.m</code> \</li>
 </ol>
 <p>\</p>
-<pre class="codehilite"><code class="language-file">A = randi(100,4,4)
+<div class="codehilite"><pre><span></span><code>A = randi(100,4,4)
 b = randi(100,4,1);
 x = A\b
 save results.txt x -ascii
-</code></pre>
+</code></pre></div>
 
 <p>\</p>
 <h2 id="compiling-matlab-code">Compiling Matlab Code<a class="headerlink" href="#compiling-matlab-code" title="Permanent link">&para;</a></h2>
@@ -83,7 +83,7 @@ save results.txt x -ascii
 <li>Create a file called <code>compile.submit</code> with the lines below: \</li>
 </ol>
 <p>\</p>
-<pre class="codehilite"><code class="language-file">universe = vanilla
+<div class="codehilite"><pre><span></span><code>universe = vanilla
 
 output = compile.out
 error = compile.err
@@ -99,29 +99,29 @@ request_memory = 1GB
 request_disk = 100MB 
 
 queue
-</code></pre>
+</code></pre></div>
 
 <p>\</p>
 <ol>
 <li>You can initiate the interactive job by using <code>condor_submit</code> 's <code>-i</code> option. Enter the following command: \</li>
 </ol>
 <p>\</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit -i compile.submit&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit -i compile.submit&lt;/strong&gt;
+</code></pre></div>
 
 <p>\ Make sure you've submitted this command from <code>learn.chtc.wisc.edu</code>! Once the job starts, continue with the following instructions.</p>
 <ol>
 <li>Since you are a guest user on our system, you will need to set your <code>HOME</code> directory by running this command: \</li>
 </ol>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;export HOME=$PWD&lt;/strong&gt; 
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;export <span class="nv">HOME</span><span class="o">=</span><span class="nv">$PWD</span>&lt;/strong&gt; 
+</code></pre></div>
 
 <p>\</p>
 <ol>
 <li>Compile your Matlab code with version 2015b. \</li>
 </ol>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;/usr/local/MATLAB/R2015b/bin/mcc -m -R -singleCompThread -R -nodisplay -R -nojvm matrix.m&lt;/strong&gt; 
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;/usr/local/MATLAB/R2015b/bin/mcc -m -R -singleCompThread -R -nodisplay -R -nojvm matrix.m&lt;/strong&gt; 
+</code></pre></div>
 
 <p>\ The extra arguments to the <code>mcc</code> command are very important here. Matlab, by default, will run on as many CPUs as it can find. This can be a big problem \ when running on someone else's computers, because your Matlab code might interfere with what the owner wants. The <code>-singleCompThread</code> option \ compiles the code to run on a single CPU, avoiding this problem. In addition, the <code>-nodisplay</code> and <code>-nojvm</code> options turn off the display (which won't exist \ where the code runs). \</p>
 <ol>
@@ -133,8 +133,8 @@ queue
 <ol>
 <li>Download the 2015b Matlab runtime hosted by CHTC: \</li>
 </ol>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/r2015b.tar.gz &lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/r2015b.tar.gz &lt;/strong&gt;
+</code></pre></div>
 
 <p>\</p>
 <h2 id="wrapper-script">Wrapper Script<a class="headerlink" href="#wrapper-script" title="Permanent link">&para;</a></h2>
@@ -153,8 +153,8 @@ queue
 <p>We'll need to add commands to unpack the runtime (which will have been transferred with the job). Add this line to the beginning of the <code>run_matrix.sh</code> file, after <code>#!/bin/bash</code> but before <code>exe_name=$0</code> : \</p>
 </li>
 </ol>
-<pre class="codehilite"><code class="language-file">tar -xzf r2015b.tar.gz
-</code></pre>
+<div class="codehilite"><pre><span></span><code>tar -xzf r2015b.tar.gz
+</code></pre></div>
 
 <p>\</p>
 <ol>
@@ -172,30 +172,30 @@ queue
 </ul>
 </li>
 </ol>
-<pre class="codehilite"><code class="language-file">executable = run_matrix.sh
-</code></pre>
+<div class="codehilite"><pre><span></span><code>executable = run_matrix.sh
+</code></pre></div>
 
 <ul>
 <li>You need to transfer the compiled binary <code>matrix</code>, as well as the runtime <code>.tar.gz</code> file, using <code>transfer_input_files</code>. \</li>
 </ul>
-<pre class="codehilite"><code class="language-file">transfer_input_files = matrix, r2015b.tar.gz
-</code></pre>
+<div class="codehilite"><pre><span></span><code>transfer_input_files = matrix, r2015b.tar.gz
+</code></pre></div>
 
 <ul>
 <li>The argument for the executable (<code>run_matrix.sh</code>) is "v90", as that is the name of the un-tarred runtime directory. \</li>
 </ul>
-<pre class="codehilite"><code class="language-file">arguments = v90
-</code></pre>
+<div class="codehilite"><pre><span></span><code>arguments = v90
+</code></pre></div>
 
 <ul>
 <li>Look at the size of the untarred runtime directory by running: \</li>
 </ul>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;du -sh v90/&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;du -sh v90/&lt;/strong&gt;
+</code></pre></div>
 
 <p>\ We need to request <em>at least</em> this much \ disk space in our submit file: \</p>
-<pre class="codehilite"><code class="language-file">request_disk = 2GB
-</code></pre>
+<div class="codehilite"><pre><span></span><code>request_disk = 2GB
+</code></pre></div>
 
 <p>\</p>
 <ol>

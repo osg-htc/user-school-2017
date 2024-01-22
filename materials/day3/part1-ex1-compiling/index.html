@@ -70,33 +70,33 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li>Copy and paste the following code into a file named <code>pascal.c</code>. \</li>
 </ol>
 <p>\</p>
-<pre class="codehilite"><code class="language-file">#include &amp;ltstdio.h&amp;gt
+<div class="codehilite"><pre><span></span><code>#<span class="k">include</span> <span class="o">&amp;</span><span class="nv">ltstdio</span>.<span class="nv">h</span><span class="o">&amp;</span><span class="nv">gt</span>
 
-long factorial(int);
+<span class="nv">long</span> <span class="nv">factorial</span><span class="ss">(</span><span class="nv">int</span><span class="ss">)</span><span class="c1">;</span>
 
-int main()
+<span class="nv">int</span> <span class="nv">main</span><span class="ss">()</span>
 {
-   int i, n, c;
-   n=7;
-   for (i = 0; i &lt; n; i++){
-      for (c = 0; c &lt;= (n - i - 2); c++)
-         printf(&quot; &quot;);
-      for (c = 0 ; c &lt;= i; c++)
-         printf(&quot;%ld &quot;,factorial(i)/(factorial(c)*factorial(i-c)));
-      printf(&quot;\n&quot;);
+   <span class="nv">int</span> <span class="nv">i</span>, <span class="nv">n</span>, <span class="nv">c</span><span class="c1">;</span>
+   <span class="nv">n</span><span class="o">=</span><span class="mi">7</span><span class="c1">;</span>
+   <span class="k">for</span> <span class="ss">(</span><span class="nv">i</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">; i &lt; n; i++){</span>
+      <span class="k">for</span> <span class="ss">(</span><span class="nv">c</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">; c &lt;= (n - i - 2); c++)</span>
+         <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s"> </span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+      <span class="k">for</span> <span class="ss">(</span><span class="nv">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">; c &lt;= i; c++)</span>
+         <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">%ld </span><span class="s2">&quot;</span>,<span class="nv">factorial</span><span class="ss">(</span><span class="nv">i</span><span class="ss">)</span><span class="o">/</span><span class="ss">(</span><span class="nv">factorial</span><span class="ss">(</span><span class="nv">c</span><span class="ss">)</span><span class="o">*</span><span class="nv">factorial</span><span class="ss">(</span><span class="nv">i</span><span class="o">-</span><span class="nv">c</span><span class="ss">)))</span><span class="c1">;</span>
+      <span class="nv">printf</span><span class="ss">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
    }
-   return 0;
+   <span class="k">return</span> <span class="mi">0</span><span class="c1">;</span>
 }
 
-long factorial(int n)
+<span class="nv">long</span> <span class="nv">factorial</span><span class="ss">(</span><span class="nv">int</span> <span class="nv">n</span><span class="ss">)</span>
 {
-   int c;
-   long result = 1;
-   for (c = 1; c &lt;= n; c++)
-         result = result*c;
-   return result;
+   <span class="nv">int</span> <span class="nv">c</span><span class="c1">;</span>
+   <span class="nv">long</span> <span class="nb">result</span> <span class="o">=</span> <span class="mi">1</span><span class="c1">;</span>
+   <span class="k">for</span> <span class="ss">(</span><span class="nv">c</span> <span class="o">=</span> <span class="mi">1</span><span class="c1">; c &lt;= n; c++)</span>
+         <span class="nb">result</span> <span class="o">=</span> <span class="nb">result</span><span class="o">*</span><span class="nv">c</span><span class="c1">;</span>
+   <span class="k">return</span> <span class="nb">result</span><span class="c1">;</span>
 }
-</code></pre>
+</code></pre></div>
 
 <h2 id="compiling">Compiling<a class="headerlink" href="#compiling" title="Permanent link">&para;</a></h2>
 <p>In order to use this code in a job, we will first need to statically compile the code. Recall the slide from the lecture - where <em>can</em> we compile and where <em>should</em> we compile? In particular:</p>

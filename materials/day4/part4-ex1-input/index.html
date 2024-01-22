@@ -69,8 +69,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="previous-files">Previous Files<a class="headerlink" href="#previous-files" title="Permanent link">&para;</a></h2>
 <h3 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
 <p>Like the previous example, we'll start by downloading our source movie files into the Gluster directory. Run this command <strong>in your Gluster directory</strong>.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/videos.tar.gz&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/videos.tar.gz&lt;/strong&gt;
+</code></pre></div>
 
 <p>While the files are copying, feel free to open a second connection to <code>learn.chtc.wisc.edu</code> and follow the instructions below. Once the files have finished downloading, untar them.</p>
 <h3 id="software-executable-submit-file">Software, Executable, Submit File<a class="headerlink" href="#software-executable-submit-file" title="Permanent link">&para;</a></h3>
@@ -82,16 +82,16 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Change the first command of your <code>run_ffmpeg.sh</code> script to: \</li>
 </ol>
-<pre class="codehilite"><code class="language-file">cp /mnt/gluster/%RED%username%ENDCOLOR%/test_open_terminal.mov ./
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">cp</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">gluster</span><span class="o">/</span><span class="err">%</span><span class="n">RED</span><span class="err">%</span><span class="n">username</span><span class="err">%</span><span class="n">ENDCOLOR</span><span class="err">%</span><span class="o">/</span><span class="n">test_open_terminal</span><span class="p">.</span><span class="n">mov</span> <span class="p">.</span><span class="o">/</span>
+</code></pre></div>
 
 <p>\ You should use your username on <code>learn.chtc.wisc.edu</code> in the path above. If you have a version of the script that uses arguments instead of the filenames, \ that's okay.</p>
 <h3 id="submit-file">Submit File<a class="headerlink" href="#submit-file" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Remove any previous requirements and add a line to the file (before the final queue statement) that ensures your job will land on computers that have access to Gluster: \</li>
 </ol>
-<pre class="codehilite"><code class="language-file">requirements = (Target.HasGluster == true)
-</code></pre>
+<div class="codehilite"><pre><span></span><code>requirements = (Target.HasGluster == true)
+</code></pre></div>
 
 <h2 id="initial-job">Initial Job<a class="headerlink" href="#initial-job" title="Permanent link">&para;</a></h2>
 <p>As before, we should test our job submission with a single <code>mov</code> file before submitting jobs for all three. Alter your submit file (if necessary) to \ run a job that converts the <code>test_open_terminal.mov</code> file.</p>

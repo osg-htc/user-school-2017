@@ -72,16 +72,16 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Note the name of the input and output files and open the submit file. Add an arguments line if it doesn't already exist, and fill it with our two chosen arguments: the name of the input file and the name of the output file: \</li>
 </ol>
-<pre class="codehilite"><code class="language-file">arguments = input.txt results.txt
-</code></pre>
+<div class="codehilite"><pre><span></span><code>arguments = input.txt results.txt
+</code></pre></div>
 
 <p>\</p>
 <ol>
 <li>Now go back to the wrapper script. Each scripting language (bash, perl, python, R, etc.) will have its own particular syntax \</li>
 </ol>
 <p>for capturing command line arguments. For bash (the language of our current wrapper script), the variables <code>$1</code> and <code>$2</code> represent \ the first and second arguments, respectively. (If our script needed three arguments, we would use <code>$3</code> for the third one). Thus, in \ the main command of the script, replace the file names with these variables: \</p>
-<pre class="codehilite"><code class="language-file">OpenBUGS &lt; $1 &gt; $2
-</code></pre>
+<div class="codehilite"><pre><span></span><code>OpenBUGS &lt; $1 &gt; $2
+</code></pre></div>
 
 <p>\</p>
 <ol>

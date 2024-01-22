@@ -68,8 +68,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>On OS X, run the Terminal app and use the <code>ssh</code> command, like so:</li>
 </ul>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;ssh username@learn.chtc.wisc.edu&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;ssh username@learn.chtc.wisc.edu&lt;/strong&gt;
+</code></pre></div>
 
 <ul>
 <li>On Windows, we recommend a free client called <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>, but any SSH client should be fine</li>
@@ -84,30 +84,30 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <h2 id="running-commands">Running Commands<a class="headerlink" href="#running-commands" title="Permanent link">&para;</a></h2>
 <p>In the exercises, we will show commands that you are supposed to type or copy into the command line, like this:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;hostname&lt;/strong&gt;
-learn.chtc.wisc.edu
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;hostname&lt;/strong&gt;
+<span class="go">learn.chtc.wisc.edu</span>
+</code></pre></div>
 
 <p><strong>Note:</strong> In the first line of the example above, the <code>%UCL_PROMPT_SHORT%</code> part is meant to show the Linux command-line prompt. You do not type this part! Further, your actual prompt probably is a bit different, and that is expected. So in the example above, the command that you type at your own prompt is just the eight characters <code>hostname</code>. The second line of the example, without the prompt, shows the output of the command; you do not type this part, either.</p>
 <p>Here are a few other commands that you can try, to learn a little bit about this machine (the examples below do not show the output from each command):</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;date&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;uname -a&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;date&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;uname -a&lt;/strong&gt;
+</code></pre></div>
 
 <p>A suggestion for the day: Try typing into the command line as many of the commands as you can. Copy-and-paste is fine, of course, but you WILL learn more if you take the time to type each command, yourself.</p>
 <h2 id="organizing-your-workspace">Organizing Your Workspace<a class="headerlink" href="#organizing-your-workspace" title="Permanent link">&para;</a></h2>
 <p>You will be doing many different exercises over the next few days, many of them on this submit machine. Each exercise may use many files, once finished. To avoid confusion, it may be useful to create a separate directory for each exercise.</p>
 <p>For instance, for the rest of this exercise, you may wish to create and use a directory named <code>monday-1.1-login</code>, or something like that.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;mkdir monday-1.1-login&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;cd monday-1.1-login&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;mkdir monday-1.1-login&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cd monday-1.1-login&lt;/strong&gt;
+</code></pre></div>
 
 <h2 id="showing-the-version-of-htcondor">Showing the Version of HTCondor<a class="headerlink" href="#showing-the-version-of-htcondor" title="Permanent link">&para;</a></h2>
 <p>HTCondor is installed on this machine. But what version? You can ask HTCondor itself:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_version&lt;/strong&gt;
-$CondorVersion: 8.7.2 Jun 02 2017 BuildID: 407060 $
-$CondorPlatform: x86_64_RedHat6 $
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_version&lt;/strong&gt;
+<span class="gp">$</span>CondorVersion: <span class="m">8</span>.7.2 Jun <span class="m">02</span> <span class="m">2017</span> BuildID: <span class="m">407060</span> $
+<span class="gp">$</span>CondorPlatform: x86_64_RedHat6 $
+</code></pre></div>
 
 <p>As you can see from the output, we are using HTCondor 8.7.2, which is the most recently released development version.</p>
 <h3 id="background-information-about-htcondor-version-numbers">Background information about HTCondor version numbers<a class="headerlink" href="#background-information-about-htcondor-version-numbers" title="Permanent link">&para;</a></h3>

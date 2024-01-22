@@ -63,23 +63,23 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>In this first part, you will create the submit file for both the local and OSG jobs, then submit the local set.</p>
 <h3 id="yet-another-queue-syntax">Yet another queue syntax<a class="headerlink" href="#yet-another-queue-syntax" title="Permanent link">&para;</a></h3>
 <p>Yesterday, you learned about the <code>queue</code> statement and some of the different ways it can be invoked to submit multiple jobs. Similar to the <code>queue from</code> statement to submit jobs based on lines from a specific file, you can use <code>queue in</code> to submit jobs based on a list directly from your submit file:</p>
-<pre class="codehilite"><code class="language-file">queue &lt;# of jobs&gt; &lt;variable&gt; in (
-&lt;item 1&gt;
-&lt;item 2&gt;
-&lt;item 3&gt;
-...
-)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">queue</span><span class="w"> </span><span class="o">&lt;</span><span class="c1"># of jobs&gt; &lt;variable&gt; in (</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">item</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">item</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">item</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">...</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
 
 <p>For example, to submit 6 jobs that sleep for <code>5</code>, <code>5</code>, <code>10</code>, <code>10</code>, <code>15</code>, and <code>15</code> seconds, you could write a submit file like the following:</p>
-<pre class="codehilite"><code class="language-file">executable = /bin/sleep
+<div class="codehilite"><pre><span></span><code>executable = /bin/sleep
 
 queue 2 arguments in (
 5
 10
 15
 )
-</code></pre>
+</code></pre></div>
 
 <p>Try submitting this file yourself and checking the jobs that end up in the queue with <code>condor_q -nobatch</code>.</p>
 <h3 id="create-the-submit-files">Create the submit files<a class="headerlink" href="#create-the-submit-files" title="Permanent link">&para;</a></h3>
@@ -94,49 +94,49 @@ queue 2 arguments in (
 </ol>
 <h3 id="monitoring-the-local-jobs">Monitoring the local jobs<a class="headerlink" href="#monitoring-the-local-jobs" title="Permanent link">&para;</a></h3>
 <p>Every few minutes, run <code>condor_q</code> and see how your sleep jobs are doing. To easily see how many jobs of each type you have left, run the following command:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% condor_q &lt;span style=&quot;background-color: #D1CAF2;&quot;&gt;&lt;Cluster ID&gt;&lt;/span&gt; -af RequestMemory | sort -n | uniq -c
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% condor_q &lt;span <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;background-color: #D1CAF2;&quot;</span>&gt;&lt;Cluster ID&gt;&lt;/span&gt; -af RequestMemory <span class="p">|</span> sort -n <span class="p">|</span> uniq -c
+</code></pre></div>
 
 <p>The numbers in the left column are the number of jobs left of that type and the number on the right is the amount of memory you requested in MB. Consider making a little table like the one below to track progress.</p>
 <table>
 <thead>
 <tr>
-<th align="left">Memory</th>
-<th align="left">Remaining #1</th>
-<th align="left">Remaining #2</th>
-<th align="left">Remaining #3</th>
+<th style="text-align: left;">Memory</th>
+<th style="text-align: left;">Remaining #1</th>
+<th style="text-align: left;">Remaining #2</th>
+<th style="text-align: left;">Remaining #3</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">2 GB</td>
-<td align="left">5</td>
-<td align="left">3</td>
-<td align="left"></td>
+<td style="text-align: left;">2 GB</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td align="left">4 GB</td>
-<td align="left">5</td>
-<td align="left">3</td>
-<td align="left"></td>
+<td style="text-align: left;">4 GB</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td align="left">8 GB</td>
-<td align="left">5</td>
-<td align="left">4</td>
-<td align="left"></td>
+<td style="text-align: left;">8 GB</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td align="left">16 GB</td>
-<td align="left">5</td>
-<td align="left">4</td>
-<td align="left"></td>
+<td style="text-align: left;">16 GB</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td align="left">32 GB</td>
-<td align="left">5</td>
-<td align="left">5</td>
-<td align="left"></td>
+<td style="text-align: left;">32 GB</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>

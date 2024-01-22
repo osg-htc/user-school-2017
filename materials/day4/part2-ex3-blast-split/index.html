@@ -64,19 +64,19 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <h3 id="obtain-the-large-input">Obtain the large input<a class="headerlink" href="#obtain-the-large-input" title="Permanent link">&para;</a></h3>
 <p>We've previously used <code>blastx</code> to analyze a relatively small input file of test data, <code>mouse.fa</code>, but let's imagine that you now need to blast a much larger dataset for your research. This dataset can be downloaded with the following command:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/mouse_rna.tar.gz&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://proxy.chtc.wisc.edu/SQUID/osgschool17/mouse_rna.tar.gz&lt;/strong&gt;
+</code></pre></div>
 
 <p>After un-tar'ing the file, you should be able to confirm that it's size is roughly 100 MB. Not only is this a bit large for file transfer, but it would take hours to complete a single <code>blastx</code> analysis for it. Also, the single output file would be huge. Compare for yourself to the time and output file size for the mouse.fa input file, according to your test job in the last exercise.</p>
 <h3 id="split-the-input-file">Split the input file<a class="headerlink" href="#split-the-input-file" title="Permanent link">&para;</a></h3>
 <p>For <code>blast</code>, it's scientifically valid to split up the input query file, analyze the pieces, and then put the results back together at the end! (Importantly, blast databases should not be split, because the <code>blast</code> output includes a score value for each sequence that is calculated relative to the entire length of the database.)</p>
 <p>Because genetic sequence data is used heavily across the life science, there are also tools for splitting up the data into smaller files. One of these is called <a href="http://genometools.org/">genome tools</a>, and you can download a package of precompiled binaries (just like blast) using the following command:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;wget http://genometools.org/pub/binary_distributions/gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;wget http://genometools.org/pub/binary_distributions/gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz&lt;/strong&gt;
+</code></pre></div>
 
 <p>Un-tar the gt package (<code>tar -xzvf ...</code>), then run it's sequence file splitter as follows, with the target file size of 1 MB:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;./gt-1.5.9-Linux_x86_64-64bit-complete/bin/gt splitfasta -targetsize 1 mouse_rna.fa&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;./gt-1.5.9-Linux_x86_64-64bit-complete/bin/gt splitfasta -targetsize <span class="m">1</span> mouse_rna.fa&lt;/strong&gt;
+</code></pre></div>
 
 <p>You'll notice that the result is a set of 100 files, all about the size of 1 MB, and numbered 1 through 100.</p>
 <h2 id="test-a-split-job">Test a split job<a class="headerlink" href="#test-a-split-job" title="Permanent link">&para;</a></h2>
@@ -86,31 +86,31 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Copy the submit file to a new file called <code>blast_split.sub</code> and modify the "queue" line of the submit file to the following:</li>
 </ol>
-<pre class="codehilite"><code class="language-file">queue inputfile matching mouse_rna.fa.1
-</code></pre>
+<div class="codehilite"><pre><span></span><code>queue inputfile matching mouse_rna.fa.1
+</code></pre></div>
 
 <p>(If this queue line looks like we should be scanning all of the rna files, wait until the next exercise)</p>
 <ol>
 <li>Replace the <code>mouse.fa</code> instances in the submit file with <code>$(inputfile)</code>, and rename the output, log, and error files to use the same <code>inputfile</code> variable:</li>
 </ol>
-<pre class="codehilite"><code class="language-file">output = $(inputfile).out
+<div class="codehilite"><pre><span></span><code>output = $(inputfile).out
 error = $(inputfile).err
 log = $(inputfile).log
-</code></pre>
+</code></pre></div>
 
 <ol>
 <li>Add an <code>arguments</code> line to the submit file so it will pass the name of the input file to the wrapper script</li>
 </ol>
-<pre class="codehilite"><code class="language-file">arguments = $(inputfile)
-</code></pre>
+<div class="codehilite"><pre><span></span><code>arguments = $(inputfile)
+</code></pre></div>
 
 <ol>
 <li>Update the memory and disk requests, since the new input file is larger and will also produce larger output. It may be best to overestimate to something like 1 GB for each. (After completing this test, you'll be able to update them to a more accurate value.)</li>
 </ol>
 <h3 id="modify-the-wrapper-file">Modify the wrapper file<a class="headerlink" href="#modify-the-wrapper-file" title="Permanent link">&para;</a></h3>
 <p>Replace instances of the input file name in the <code>blast_wrapper.sh</code> script so that it will insert the first argument in place of the input filename, like so:</p>
-<pre class="codehilite"><code class="language-file">./blastx -db pdbaa -query $1 -out $1.result
-</code></pre>
+<div class="codehilite"><pre><span></span><code>./blastx -db pdbaa -query $1 -out $1.result
+</code></pre></div>
 
 <p>NOTE: bash shell scripts will use the first argument in place of <code>$1</code>, the second argument as <code>$2</code>, etc.</p>
 <h3 id="submit-the-test-job">Submit the test job<a class="headerlink" href="#submit-the-test-job" title="Permanent link">&para;</a></h3>

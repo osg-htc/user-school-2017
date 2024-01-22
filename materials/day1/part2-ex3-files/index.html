@@ -117,30 +117,30 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="running-a-job-with-input-files">Running a Job With Input Files<a class="headerlink" href="#running-a-job-with-input-files" title="Permanent link">&para;</a></h2>
 <p>Next, you will run a job that requires an input file. As with all previous examples, you will tell HTCondor to transfer files to the sandbox (=should_transfer_files = YES=). Remember, the initial job sandbox contains only the renamed job executable and nothing else from your directory on the submit machine. You must tell HTCondor explicitly about every other file to transfer to the sandbox. Fortunately, this is easy.</p>
 <p>Here is a simple Python script that takes the name of an input file (containing one word per line) from the command line, counts the number of times each (lowercased) word occurs in the text, and prints out the final list of words and their counts.</p>
-<pre class="codehilite"><code class="language-file">#!/usr/bin/env python
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 
-import os
-import sys
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
-if len(sys.argv) != 2:
-    print 'Usage: %s DATA' % (os.path.basename(sys.argv[0]))
-    sys.exit(1)
-input_filename = sys.argv[1]
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;Usage: </span><span class="si">%s</span><span class="s1"> DATA&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">input_filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-words = {}
+<span class="n">words</span> <span class="o">=</span> <span class="p">{}</span>
 
-my_file = open(input_filename, 'r')
-for line in my_file:
-    word = line.strip().lower()
-    if word in words:
-        words[word] += 1
-    else:
-        words[word] = 1
-my_file.close()
+<span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">my_file</span><span class="p">:</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">my_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-for word in sorted(words.keys()):
-    print '%8d %s' % (words[word], word)
-</code></pre>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="nb">print</span> <span class="s1">&#39;</span><span class="si">%8d</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">word</span><span class="p">],</span> <span class="n">word</span><span class="p">)</span>
+</code></pre></div>
 
 <ol>
 <li>Save the Python script in a file named <code>freq.py</code></li>
@@ -152,8 +152,8 @@ for word in sorted(words.keys()):
 </ol>
 <p>If things do not work the first time, keep trying! At this point in the exercises, we are telling you less and less explicitly how to do steps that you have done before. If you get stuck, ask a neighbor or one of the instructors.</p>
 <p><strong>Note:</strong> If you want to transfer more than one input file, list all of them on a single <code>transfer_input_files</code> command, separated by commas. For example, if there are three input files:</p>
-<pre class="codehilite"><code class="language-file">transfer_input_files = a.txt, b.txt, c.txt
-</code></pre>
+<div class="codehilite"><pre><span></span><code>transfer_input_files = a.txt, b.txt, c.txt
+</code></pre></div>
 
 <h3 id="extra-challenge">Extra Challenge<a class="headerlink" href="#extra-challenge" title="Permanent link">&para;</a></h3>
 <p>Many standard command-line program operate on input files. For example, the <code>cat</code> command can takes one or more input files as arguments, printing to standard output each file in order. Other common commands that take input files as arguments are <code>grep</code>, <code>diff</code>, and <code>sort</code>.</p>
@@ -178,13 +178,13 @@ for word in sorted(words.keys()):
 <p>As you saw in the last exercise, by default HTCondor transfers files that are created in the job sandbox back to the submit directory when the job finishes. In fact, HTCondor will also transfer back <strong>changed</strong> input files, too. But, this only works for files that are in the top-level sandbox directory, and <strong>not</strong> for ones contained in subdirectories.</p>
 <p>What if you want to bring back only <strong>some</strong> output files, or output files contained in subdirectories?</p>
 <p>Here is a simple shell script that creates several files, including a copy of an input file in a new subdirectory:</p>
-<pre class="codehilite"><code class="language-file">#!/bin/sh
-if [ $# -ne 1 ]; then echo &quot;Usage: $0 INPUT&quot;; exit 1; fi
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -ne <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> INPUT&quot;</span><span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span><span class="p">;</span> <span class="k">fi</span>
 date &gt; output-timestamp.txt
 cal &gt; output-calendar.txt
 mkdir subdirectory
-cp $1 subdirectory/backup-$1
-</code></pre>
+cp <span class="nv">$1</span> subdirectory/backup-<span class="nv">$1</span>
+</code></pre></div>
 
 <p>First, let’s confirm that HTCondor does not bring back the output file in the subdirectory:</p>
 <ol>
@@ -193,8 +193,8 @@ cp $1 subdirectory/backup-$1
 <li>Submit the job, wait for it to finish, and examine the contents of your submit directory</li>
 </ol>
 <p>Suppose you decide that you want only the timestamp output file and all files in the subdirectory, but not the calendar output file. You can tell HTCondor to transfer these specific files:</p>
-<pre class="codehilite"><code class="language-file">transfer_output_files = output-timestamp.txt, subdirectory/
-</code></pre>
+<div class="codehilite"><pre><span></span><code>transfer_output_files = output-timestamp.txt, subdirectory/
+</code></pre></div>
 
 <p><strong>Note:</strong> See the trailing slash (<code>/</code>) on the subdirectory? That tells HTCondor to transfer back <strong>the files</strong> contained in the subdirectory, but not the directory itself; the files will be written directly into the submit directory itself. If you want HTCondor to transfer back an entire directory, leave off the trailing slash.</p>
 <ol>

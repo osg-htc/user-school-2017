@@ -62,7 +62,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="running-a-simple-command-using-a-submit-file">Running a Simple Command Using a Submit File<a class="headerlink" href="#running-a-simple-command-using-a-submit-file" title="Permanent link">&para;</a></h2>
 <p>Nearly all of the time, when you want to run an HTCondor job, you first write an HTCondor submit file for it. In this section, you will run the same <code>hostname</code> command as in the last exercise, but using a submit file.</p>
 <p>Here is a simple submit file for the <code>hostname</code> command:</p>
-<pre class="codehilite"><code class="language-file">universe = vanilla
+<div class="codehilite"><pre><span></span><code>universe = vanilla
 executable = /bin/hostname
 
 output = simple.out
@@ -74,7 +74,7 @@ request_memory = 1MB
 request_disk = 1MB
 
 queue
-</code></pre>
+</code></pre></div>
 
 <p>Write those lines of text in a file named <code>simple.sub</code>.</p>
 <p><strong>Note:</strong> There is nothing magic about the name of an HTCondor submit file. It can be any filename you want. It's a good practice to always include the <code>.sub</code> extension, but it is not required. Ultimately, a submit file is a text file</p>
@@ -119,52 +119,52 @@ queue
 </table>
 <p>Note that we are not using the <code>arguments</code> lines or <code>transfer_input_files</code> because the <code>hostname</code> program is all that needs to be transferred from the submit server, and we want to run it without any additional options.</p>
 <p>Double-check your submit file, so that it matches the text above. Then, tell HTCondor to run your job:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit simple.sub&lt;/strong&gt;
-Submitting job(s).
-1 job(s) submitted to cluster &lt;em&gt;NNNN&lt;/em&gt;.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;condor_submit simple.sub&lt;/strong&gt;
+<span class="go">Submitting job(s).</span>
+<span class="go">1 job(s) submitted to cluster &lt;em&gt;NNNN&lt;/em&gt;.</span>
+</code></pre></div>
 
 <p>The actual cluster number will be shown instead of <code>NNNN</code>.</p>
 <p>If, instead of the text above, there are error messages, read them carefully and then try to correct your submit file.</p>
 <p>Notice that <code>condor_submit</code> returns back to the shell prompt right away. It does <strong>not</strong> wait for your job to run. Instead, as soon as it has finished submitting your job into the queue, the submit command finishes.</p>
 <p>Now, use <code>condor_q</code> and <code>condor_q -nobatch</code> to watch for your job in the queue. You probably may not even catch the job in the <code>R</code> running state, because the <code>hostname</code> command runs very quickly. When the job itself is finished, it will no longer be listed in the <code>condor_q</code> output.</p>
 <p>The output from your job is written to the filename given in the <code>output</code> line of your submit file. Thus, after the job finishes, you should be able to see the <code>hostname</code> output in <code>simple.out</code>, since this information is usually printed to the terminal by the <code>hostname</code> program, and not to a special file of it's own.</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat simple.out&lt;/strong&gt;
-e171.chtc.wisc.edu
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat simple.out&lt;/strong&gt;
+<span class="go">e171.chtc.wisc.edu</span>
+</code></pre></div>
 
 <p>The <code>simple.err</code> file should be empty, unless there were issues running the <code>hostname</code> executable after it was transferred to the slot. The <code>simple.log</code> is more complex and will be the focus of a later exercise.</p>
 <h3 id="running-a-job-with-arguments">Running a Job With Arguments<a class="headerlink" href="#running-a-job-with-arguments" title="Permanent link">&para;</a></h3>
 <p>Very often, when you run a command on the command line, it includes arguments after the command name itself:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;cat &lt;em&gt;simple.out&lt;/em&gt;&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;sleep &lt;em&gt;60&lt;/em&gt;&lt;/strong&gt;
-%UCL_PROMPT_SHORT% &lt;strong&gt;dc &lt;em&gt;-e '6 7 * p'&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;cat &lt;em&gt;simple.out&lt;/em&gt;&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;sleep &lt;em&gt;60&lt;/em&gt;&lt;/strong&gt;
+<span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;dc &lt;em&gt;-e <span class="s1">&#39;6 7 * p&#39;</span>&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>In an HTCondor submit file, the command (or "program") name itself goes in the <code>executable</code> statement and <strong>all remaining arguments</strong> go into an <code>arguments</code> statement. For example, if the full command is:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;sleep &lt;em&gt;60&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;sleep &lt;em&gt;60&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>Then in the submit file, we put:</p>
-<pre class="codehilite"><code class="language-file">executable = /bin/sleep
+<div class="codehilite"><pre><span></span><code>executable = /bin/sleep
 arguments = &quot;60&quot;
-</code></pre>
+</code></pre></div>
 
 <p><strong>Note:</strong> Put the entire list of arguments inside one pair of double-quotes.</p>
 <p>For the command-line command:</p>
-<pre class="codehilite"><code class="language-console">%UCL_PROMPT_SHORT% &lt;strong&gt;dc &lt;em&gt;-e '6 7 * p'&lt;/em&gt;&lt;/strong&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gp">%</span>UCL_PROMPT_SHORT% &lt;strong&gt;dc &lt;em&gt;-e <span class="s1">&#39;6 7 * p&#39;</span>&lt;/em&gt;&lt;/strong&gt;
+</code></pre></div>
 
 <p>Then in the submit file, we put:</p>
-<pre class="codehilite"><code class="language-file">executable = /usr/bin/dc
-arguments = &quot;-e '6 7 * p'&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>executable = /usr/bin/dc
+arguments = &quot;-e &#39;6 7 * p&#39;&quot;
+</code></pre></div>
 
 <p>Let’s try a job submission with arguments. We will use the <code>sleep</code> command shown above, which simply does nothing for the specified number of seconds, then exits normally. It is convenient for simulating a job that takes a while to run.</p>
 <p>Create a new submit file (you name it this time) and save the following text in it.</p>
-<pre class="codehilite"><code class="language-file">universe = vanilla
-executable = &lt;em&gt;/bin/sleep&lt;/em&gt;
-&lt;em&gt;arguments = &quot;60&quot;&lt;/em&gt;
+<div class="codehilite"><pre><span></span><code>universe = vanilla
+executable = <span class="nt">&lt;em&gt;</span>/bin/sleep<span class="nt">&lt;/em&gt;</span>
+<span class="nt">&lt;em&gt;</span>arguments = &quot;60&quot;<span class="nt">&lt;/em&gt;</span>
 
 output = sleep.out
 error = sleep.err
@@ -175,7 +175,7 @@ request_memory = 1MB
 request_disk = 1MB
 
 queue
-</code></pre>
+</code></pre></div>
 
 <p>Except for changing a few filenames, this submit file is nearly identical to the last one. But, see the extra <code>arguments</code> line?</p>
 <p>Submit this new job. Again, watch for it to run using <code>condor_q</code> and <code>condor_q -nobatch=; check once every 15 seconds or so. Once the job starts running, it will take about 1 minute to run (because of the =sleep</code> command, right?), so you should be able to see it running for a bit. When the job finishes, it will disappear from the queue, but there will be no output in the output or error files, because <code>sleep</code> does not produce any output.</p>
@@ -204,39 +204,39 @@ queue
 <p>In this example, the <code>executable</code> that was named in the submit file did <strong>not</strong> start with a <code>/</code>, so the location of the file is relative to the submit directory itself. In other words, in this format the executable must be in the same directory as the submit file.</p>
 <h3 id="extra-challenge-1">Extra Challenge 1<a class="headerlink" href="#extra-challenge-1" title="Permanent link">&para;</a></h3>
 <p>Below is a simple Python script that does something similar to the shell script above. Run this Python script using HTCondor.</p>
-<pre class="codehilite"><code class="language-file">#!/usr/bin/env python
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 
-&quot;&quot;&quot;Extra Challenge for OSG User School 2015
-Monday, 27 July 2015
-Written by Tim Cartwright
-Submitted to CHTC by #YOUR_NAME#
-&quot;&quot;&quot;
+<span class="sd">&quot;&quot;&quot;Extra Challenge for OSG User School 2015</span>
+<span class="sd">Monday, 27 July 2015</span>
+<span class="sd">Written by Tim Cartwright</span>
+<span class="sd">Submitted to CHTC by #YOUR_NAME#</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-import getpass
-import os
-import platform
-import socket
-import sys
-import time
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-arguments = None
-if len(sys.argv) &gt; 1:
-    arguments = '&quot;' + ' '.join(sys.argv[1:]) + '&quot;'
+<span class="n">arguments</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span>
 
-print &gt;&gt; sys.stderr, __doc__
-print 'Time    :', time.strftime('%Y-%m-%d (%a) %H:%M:%S %Z')
-print 'Host    :', getpass.getuser(), '@', socket.gethostname()
-uname = platform.uname()
-print &quot;System  :&quot;, uname[0], uname[2], uname[4]
-print &quot;Version :&quot;, platform.python_version()
-print &quot;Program :&quot;, sys.executable
-print 'Script  :', os.path.abspath(__file__)
-print 'Args    :', arguments
-</code></pre>
+<span class="nb">print</span> <span class="o">&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="vm">__doc__</span>
+<span class="nb">print</span> <span class="s1">&#39;Time    :&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> (</span><span class="si">%a</span><span class="s1">) %H:%M:%S %Z&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s1">&#39;Host    :&#39;</span><span class="p">,</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">()</span>
+<span class="n">uname</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">uname</span><span class="p">()</span>
+<span class="nb">print</span> <span class="s2">&quot;System  :&quot;</span><span class="p">,</span> <span class="n">uname</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">uname</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">uname</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span> <span class="s2">&quot;Version :&quot;</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">()</span>
+<span class="nb">print</span> <span class="s2">&quot;Program :&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
+<span class="nb">print</span> <span class="s1">&#39;Script  :&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s1">&#39;Args    :&#39;</span><span class="p">,</span> <span class="n">arguments</span>
+</code></pre></div>
 
 <p><strong>Note:</strong> For the Python script, above, you'll want to increase the memory request. We will talk about tuning resource requests, later, but you should be able to set the following to have the job run:</p>
-<pre class="codehilite"><code class="language-file">request_memory = 64 MB
-</code></pre>
+<div class="codehilite"><pre><span></span><code>request_memory = 64 MB
+</code></pre></div>
 
 <h3 id="extra-challenge-1_1">Extra Challenge 1<a class="headerlink" href="#extra-challenge-1_1" title="Permanent link">&para;</a></h3>
 <p>Do you have any software of your own that</p>
